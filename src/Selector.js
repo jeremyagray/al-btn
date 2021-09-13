@@ -6,9 +6,9 @@ import './Selector.css';
 import AlabamaMap from './Alabama.js';
 
 function Selector() {
-  const [graph, setGraph] = useState('state');
+  const [graph, setGraph] = useState('counties');
 
-  if (graph === 'state') {
+  if (graph === 'counties') {
     return (
       <div className="root">
         <SelectorDropDown
@@ -36,7 +36,7 @@ function SelectorDropDown(props) {
         value={props.graph}
         onChange={changer}
       >
-        <option value="state">Alabama</option>
+        <option value="counties">County Map</option>
       </select>
     </div>
   );
