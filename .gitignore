@@ -1,0 +1,25 @@
+# ******************************************************************************
+#
+# al-btn, a React/D3 visualization of Alabama data
+#
+# Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+#
+# All rights reserved.
+#
+# ******************************************************************************
+
+# Emacs.
+*~
+
+# Node/npm.
+*-debug.log*
+*-error.log*
+.DS_Store
+.env
+.env.*
+.nyc_output/
+.pnp.js
+/.pnp
+/build
+/coverage
+/node_modules

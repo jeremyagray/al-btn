@@ -1,0 +1,98 @@
+{
+  "author": "Jeremy A Gray <gray@flyquackswim.com> (http://www.flyquackswim.com/)",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/jeremyagray/al-btn/issues"
+  },
+  "dependencies": {
+    "@juggle/resize-observer": "^3.3.1",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "d3": "^7.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "topojson-client": "^3.1.0",
+    "web-vitals": "^1.1.1"
+  },
+  "description": "A React/D3 Visualization of Alabama Data",
+  "devDependencies": {
+    "eslint-plugin-jest-dom": "^3.6.5",
+    "eslint-plugin-testing-library": "^3.10.2"
+  },
+  "directories": {},
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "homepage": "https://github.com/jeremyagray/al-btn",
+  "keywords": [
+    "d3",
+    "node",
+    "react"
+  ],
+  "license": "MIT",
+  "name": "al-btn",
+  "pccc": {
+    "header_length": 50,
+    "body_length": 72,
+    "rewrap": true,
+    "spell_check": false,
+    "repair": false,
+    "types": [
+      "build",
+      "ci",
+      "depends",
+      "docs",
+      "feat",
+      "fix",
+      "perf",
+      "refactor",
+      "style",
+      "testing"
+    ],
+    "scopes": [
+      "assets",
+      "d3",
+      "react"
+    ],
+    "footers": [
+      "signed-off-by"
+    ],
+    "required_footers": [
+      "signed-off-by"
+    ]
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremyagray/al-btn.git"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "cover": "react-scripts test --coverage",
+    "lint": "eslint 'src/*.js'",
+    "lint-fix": "eslint 'src/*.js' --fix",
+    "start": "BROWSER=none PORT=3001 react-scripts start",
+    "test": "react-scripts test"
+  },
+  "version": "0.0.1"
+}
