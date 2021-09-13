@@ -1,9 +1,135 @@
 #!/usr/bin/env python
+#
+# ******************************************************************************
+#
+# al-btn, a React/D3 visualization of Alabama data
+#
+# Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+#
+# All rights reserved.
+#
+# ******************************************************************************
 
+import re
+import datetime
+import requests
+from decimal import Decimal
 from bs4 import BeautifulSoup as bs
 
-with open("public/data/alabama/clfbycnty.aspx", "rb") as f:
+with open("public/data/alabama/clfbycnty.html", "rb") as f:
     soup = bs(f, "html.parser")
 
-id = "ctl00_ContentPlaceHolder1_GridView13"
-print(soup.find(id=id))
+counties_id = "ctl00_ContentPlaceHolder1_GridView4"
+current_labor_force_id = "ctl00_ContentPlaceHolder1_GridView1"
+previous_month_labor_force_id = "ctl00_ContentPlaceHolder1_GridView28"
+previous_year_labor_force_id = "ctl00_ContentPlaceHolder1_GridView3"
+
+current_employed_id = "ctl00_ContentPlaceHolder1_GridView27"
+previous_month_employed_id = "ctl00_ContentPlaceHolder1_GridView6"
+previous_year_employed_id = "ctl00_ContentPlaceHolder1_GridView7"
+
+current_unemployed_id = "ctl00_ContentPlaceHolder1_GridView8"
+previous_month_unemployed_id = "ctl00_ContentPlaceHolder1_GridView9"
+previous_year_unemployed_id = "ctl00_ContentPlaceHolder1_GridView10"
+
+current_rate_id = "ctl00_ContentPlaceHolder1_GridView11"
+previous_month_rate_id = "ctl00_ContentPlaceHolder1_GridView12"
+previous_year_rate_id = "ctl00_ContentPlaceHolder1_GridView13"
+
+months = {
+    "January": 1,
+    "February": 2,
+    "March": 3,
+    "April": 4,
+    "May": 5,
+    "June": 6,
+    "July": 7,
+    "August": 8,
+    "September": 9,
+    "October": 10,
+    "November": 11,
+    "December": 12,
+}
+
+data = {
+    "data": [],
+    "fetched": datetime.datetime.now(),
+}
+
+# Date.
+date_re = r"(?i)(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})"
+for s in soup.find_all("section", class_="intro-box"):
+    for c in s.children:
+        date = re.search(date_re, c.text)
+        if date:
+            data["month"] = months[date.group(1)]
+            data["year"] = date.group(2)
+
+
+def get_counties(id):
+    data = []
+    table = soup.find(id=id)
+    for c in table.children:
+        county = re.search(r"(\w+)\s+County", c.text.strip())
+        if county:
+            data.append(county.group(1))
+
+    return data
+
+
+def get_integers(id):
+    data = []
+    table = soup.find(id=id)
+    for c in table.children:
+        total = re.search(r"([\d,]+)", c.text.strip())
+        if total:
+            data.append(int(total.group(1).replace(",", "")))
+
+    return data
+
+
+def get_percents(id):
+    percents = []
+    table = soup.find(id=id)
+    for c in table.children:
+        total = re.search(r"([\d\.]+)%", c.text.strip())
+        if total:
+            percents.append(str(Decimal(total.group(1)) / 100))
+
+    return percents
+
+
+labels = [
+    "county",
+    "current labor force",
+    "previous month labor force",
+    "previous year labor force",
+    "current employed",
+    "previous month employed",
+    "previous year employed",
+    "current unemployed",
+    "previous month unemployed",
+    "previous year unemployed",
+    "current rate",
+    "previous month rate",
+    "previous year rate",
+]
+
+for county in zip(
+                get_counties(counties_id),
+                get_integers(current_labor_force_id),
+                get_integers(previous_month_labor_force_id),
+                get_integers(previous_year_labor_force_id),
+                get_integers(current_employed_id),
+                get_integers(previous_month_employed_id),
+                get_integers(previous_year_employed_id),
+                get_integers(current_unemployed_id),
+                get_integers(previous_month_unemployed_id),
+                get_integers(previous_year_unemployed_id),
+                get_percents(current_rate_id),
+                get_percents(previous_month_rate_id),
+                get_percents(previous_year_rate_id),
+):
+    data["data"].append(dict(zip(labels, list(county))))
+
+print(data)
