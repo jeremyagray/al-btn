@@ -21,22 +21,26 @@ function AlabamaMapSVG() {
 
   // Data state.
   const [mapData, setMapData] = useState({'type': ''});
+  const [empData, setEmpData] = useState({'fetched': ''});
   const [loadingData, setLoadingData] = useState(true);
   const [loadingDataError, setLoadingDataError] = useState(null);
 
   useEffect(() => {
     const mapDataURL = process.env.PUBLIC_URL + '/data/census/al-topo.json';
+    const empDataURL = process.env.PUBLIC_URL + '/data/alabama/20210731-unemployment.json';
     let isMounted = true;
     setLoadingData(true);
 
     async function fetchData() {
       try {
-        const response = await axios.get(mapDataURL);
+        const mapResponse = await axios.get(mapDataURL);
+        const empResponse = await axios.get(empDataURL);
 
         if (isMounted) {
-          setMapData(response.data);
+          setMapData(mapResponse.data);
+          setEmpData(empResponse.data);
           setLoadingData(false);
-          generateMap(mapData, ref.current);
+          generateMap(mapData, empData, ref.current);
         }
       } catch (error) {
         if (isMounted) {
@@ -52,7 +56,7 @@ function AlabamaMapSVG() {
       isMounted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapData['type']]);
+  }, [mapData['type'], empData['fetched']]);
 
   if (loadingData) {
     return (
@@ -81,8 +85,16 @@ function AlabamaMapSVG() {
 
 export default AlabamaMap;
 
-function generateMap(mapData, element) {
+function generateMap(mapData, empData, element) {
   let counties = topojson.feature(mapData, mapData.objects.counties);
+  for (let i = 0; i < counties.features.length; i++) {
+    for (let j = 0; j < empData.data.length; j++) {
+      if (empData.data[j].fips === counties.features[i].properties.GEOID) {
+        counties.features[i].properties.unemp_rate = empData.data[j]['current rate'];
+        break;
+      }
+    }
+  }
 
   // Visualization properties.
   const palletteDimensions = {
@@ -125,6 +137,13 @@ function generateMap(mapData, element) {
   // Path generator.
   const path = d3.geoPath()
         .projection(projection);
+
+  const graphColorScale = d3
+        .scaleSequential()
+        .domain(d3.extent(counties.features, (d) => {
+          return d.properties.unemp_rate;
+        }));
+  const getGraphScaleColor = graphColorScale.interpolator(d3.interpolateBlues);
 
   // Visualization SVG.
   const svg = d3.select(element)
@@ -171,7 +190,13 @@ function generateMap(mapData, element) {
       .attr('id', (d, i) => {
         return d.properties.GEOID;
       })
-      .style('fill', '#ffffff')
+      .attr('data-unemp-rate', (d, i) => {
+        return d.properties.unemp_rate;
+      })
+      // .style('fill', '#ffffff')
+      .style('fill', (d, i) => {
+        return getGraphScaleColor(d.properties.unemp_rate);
+      })
       .attr('stroke', '#000000')
       .attr('stroke-linejoin', 'round')
       .attr('d', path)
