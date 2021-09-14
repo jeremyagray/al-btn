@@ -13,8 +13,12 @@
 import re
 import datetime
 import requests
+import json
 from decimal import Decimal
 from bs4 import BeautifulSoup as bs
+
+with open("public/data/census/alabama-county-fips.json", "r") as f:
+    fips = json.load(f)
 
 with open("public/data/alabama/clfbycnty.html", "rb") as f:
     soup = bs(f, "html.parser")
@@ -53,7 +57,7 @@ months = {
 
 data = {
     "data": [],
-    "fetched": datetime.datetime.now(),
+    "fetched": str(datetime.datetime.now()),
 }
 
 # Date.
@@ -70,11 +74,17 @@ def get_counties(id):
     data = []
     table = soup.find(id=id)
     for c in table.children:
-        county = re.search(r"(\w+)\s+County", c.text.strip())
+        county = re.search(r"([\w\.\s]+)\s+County", c.text.strip())
         if county:
             data.append(county.group(1))
 
     return data
+
+
+def get_fips(county):
+    for (k, v) in fips["AL"].items():
+        if v["county"] == county:
+            return k
 
 
 def get_integers(id):
@@ -101,6 +111,7 @@ def get_percents(id):
 
 labels = [
     "county",
+    "fips",
     "current labor force",
     "previous month labor force",
     "previous year labor force",
@@ -117,6 +128,7 @@ labels = [
 
 for county in zip(
                 get_counties(counties_id),
+                [get_fips(c) for c in get_counties(counties_id)],
                 get_integers(current_labor_force_id),
                 get_integers(previous_month_labor_force_id),
                 get_integers(previous_year_labor_force_id),
@@ -132,4 +144,5 @@ for county in zip(
 ):
     data["data"].append(dict(zip(labels, list(county))))
 
-print(data)
+# print(data)
+print(json.dumps(data, indent=2))
