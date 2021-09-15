@@ -110,8 +110,9 @@ def get_percents(id):
 
 
 labels = [
-    "county",
     "fips",
+    "month",
+    "year",
     "current labor force",
     "previous month labor force",
     "previous year labor force",
@@ -126,9 +127,13 @@ labels = [
     "previous year rate",
 ]
 
+# Rate tolerance.
+tol = 0.02
+
 for county in zip(
-                get_counties(counties_id),
                 [get_fips(c) for c in get_counties(counties_id)],
+                [data["month"] - 1 for c in get_counties(counties_id)],
+                [data["year"] for c in get_counties(counties_id)],
                 get_integers(current_labor_force_id),
                 get_integers(previous_month_labor_force_id),
                 get_integers(previous_year_labor_force_id),
@@ -142,7 +147,16 @@ for county in zip(
                 get_percents(previous_month_rate_id),
                 get_percents(previous_year_rate_id),
 ):
+    # Check scraped versus calculated rate.
+    assert int(county[9]) / int(county[3]) <= (1 + tol) * float(county[12])
+    assert int(county[9]) / int(county[3]) >= (1 - tol) * float(county[12])
+
+    assert int(county[10]) / int(county[4]) <= (1 + tol) * float(county[13])
+    assert int(county[10]) / int(county[4]) >= (1 - tol) * float(county[13])
+
+    assert int(county[11]) / int(county[5]) <= (1 + tol) * float(county[14])
+    assert int(county[11]) / int(county[5]) >= (1 - tol) * float(county[14])
+
     data["data"].append(dict(zip(labels, list(county))))
 
-# print(data)
 print(json.dumps(data, indent=2))
