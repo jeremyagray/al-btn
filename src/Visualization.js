@@ -8,18 +8,16 @@
 //   useState
 // } from 'react';
 
-import './Body.css';
-import Visualization from './Visualization.js';
+import './Visualization.css';
 
-function Body() {
+function Visualization() {
   return (
-    <div className="AppBody">
+    <div className="AppVisualization">
       <p>
-        Body container.
+        Visualization container.
       </p>
-      <Visualization />
     </div>
   );
 }
 
-export default Body;
+export default Visualization;
