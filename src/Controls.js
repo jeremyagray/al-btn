@@ -9,13 +9,12 @@
 // } from 'react';
 
 import './Controls.css';
+import Selector from './Selector.js';
 
 function Controls() {
   return (
     <div className="AppControls">
-      <p>
-        Controls container.
-      </p>
+      <Selector />
     </div>
   );
 }

@@ -1,9 +1,14 @@
+/*
+ * SPDX-License-Identifier: MIT
+ *
+ * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+ */
+
 import {
   useState
 } from 'react';
 
 import './Selector.css';
-import AlabamaMap from './Alabama.js';
 
 function Selector() {
   const [graph, setGraph] = useState('counties');
@@ -15,7 +20,6 @@ function Selector() {
           graph={graph}
           setGraph={setGraph}
         />
-        <AlabamaMap />
       </div>
     );
   }
@@ -36,7 +40,8 @@ function SelectorDropDown(props) {
         value={props.graph}
         onChange={changer}
       >
-        <option value="counties">County Map</option>
+        <option value="counties">county data</option>
+        <option value="warnings">current NWS alerts</option>
       </select>
     </div>
   );
