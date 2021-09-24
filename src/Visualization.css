@@ -1,3 +1,4 @@
 .AppVisualization {
     width: 60%;
+    flex-grow: 3;
 }

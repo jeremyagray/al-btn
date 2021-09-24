@@ -10,14 +10,13 @@
 
 import './Body.css';
 import Visualization from './Visualization.js';
+import Controls from './Controls.js';
 
 function Body() {
   return (
     <div className="AppBody">
-      <p>
-        Body container.
-      </p>
       <Visualization />
+      <Controls />
     </div>
   );
 }
