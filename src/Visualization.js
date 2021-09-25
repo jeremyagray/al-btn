@@ -9,13 +9,12 @@
 // } from 'react';
 
 import './Visualization.css';
+import AlabamaMap from './Counties.js';
 
 function Visualization() {
   return (
     <div className="AppVisualization">
-      <p>
-        Visualization container.
-      </p>
+      <AlabamaMap />
     </div>
   );
 }
