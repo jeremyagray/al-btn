@@ -10,11 +10,13 @@
 
 import './Controls.css';
 import Selector from './Selector.js';
+import Config from './Config.js';
 
 function Controls() {
   return (
     <div className="AppControls">
       <Selector />
+      <Config />
     </div>
   );
 }
