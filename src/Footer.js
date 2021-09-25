@@ -13,6 +13,9 @@ import './Footer.css';
 function Footer() {
   return (
     <div className="AppFooter">
+      <p>
+        Developed and hosted by <a href="https://www.flyquackswim.com/">FlyQuackSwim</a>.  Copyright &#169; 2021.
+      </p>
     </div>
   );
 }

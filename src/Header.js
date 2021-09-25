@@ -13,6 +13,9 @@ import './Header.css';
 function Header() {
   return (
     <div className="AppHeader">
+      <h1>
+        Alabama:  By the Numbers
+      </h1>
     </div>
   );
 }
