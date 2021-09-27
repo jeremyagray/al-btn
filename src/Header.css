@@ -1,1 +1,8 @@
+.AppHeader {
+    color: #ffffff;
+    background-color: #b20021;
+}
 
+.navbar-light .navbar-brand {
+    color: #ffffff;
+}
