@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="600"
+    height="600"
+    >
+  <!-- x = half-saltire-width / sin(arctan(2/3)) -->
+  <!-- x = 45.0693909433 -->
+  <!-- y = half-saltire-width / cos(arctan(2/3)) -->
+  <!-- y = 30.0462606289 -->
+  <g
+      transform="translate(0, 100)"
+      >
+    <rect
+	x="0"
+	y="0"
+	width="600"
+	height="400"
+	fill="#ffffff"
+	/>
+    <path
+	fill="#b20021"
+	d="M0,0L0,30.0462606289L554.9306090567,400L600,400L600,369.9537393711L45.0693909433,0L0,0"
+	/>
+    <path
+	fill="#b20021"
+	d="M600,0L554.9306090567,0L0,369.9537393711L0,400L45.0693909433,400L600,30.0462606289L600,0"
+	/>
+  </g>
+</svg>
