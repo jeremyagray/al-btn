@@ -1,2 +1,12 @@
 .AppContact {
 }
+
+#contactFormSubmit {
+    color: #ffffff;
+    background-color: #b20021;
+}
+
+#contactFormSubmit:hover {
+    background-color: #ffffff;
+    color: #b20021;
+}
