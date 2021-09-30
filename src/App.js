@@ -8,17 +8,34 @@
 //   useState
 // } from 'react';
 
+import {
+  Switch,
+  Route,
+} from "react-router-dom";
+
 import './App.css';
 
 import Header from './Header.js';
 import Body from './Body.js';
+import Contact from './Contact.js';
 import Footer from './Footer.js';
+import Register from './Register.js';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Body />
+      <Switch>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/">
+          <Body />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   );
