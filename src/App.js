@@ -15,10 +15,11 @@ import {
 
 import './App.css';
 
-import Header from './Header.js';
 import Body from './Body.js';
 import Contact from './Contact.js';
 import Footer from './Footer.js';
+import Header from './Header.js';
+import Login from './Login.js';
 import Register from './Register.js';
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
       <Switch>
         <Route path="/contact">
           <Contact />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
         <Route path="/register">
           <Register />

@@ -1,0 +1,18 @@
+/*
+ * SPDX-License-Identifier: MIT
+ *
+ * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+ */
+
+.AppLogin {
+}
+
+#loginFormSubmit {
+    color: #ffffff;
+    background-color: #b20021;
+}
+
+#loginFormSubmit:hover {
+    background-color: #ffffff;
+    color: #b20021;
+}
