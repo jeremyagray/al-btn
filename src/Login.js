@@ -30,7 +30,12 @@ function Login() {
           <Form.Control required type="password" placeholder="enter password" />
         </Form.Group>
 
-        <Form.Control hidden placeholder="enter a value if you are a spammer" />
+        <Form.Group hidden className="p-3 mb-3" controlId="loginFormSticky">
+          <Form.Label hidden>
+            Sticky
+          </Form.Label>
+          <Form.Control hidden placeholder="enter a value if you are a spammer" />
+        </Form.Group>
 
         <Button id="loginFormSubmit" variant="primary" type="submit">
           Login

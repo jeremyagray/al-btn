@@ -38,6 +38,15 @@ test('renders password form control', () => {
     .toBeInTheDocument();
 });
 
+test('renders sticky anti-spam field', () => {
+  render(<Login />);
+
+  expect(
+    screen
+      .getByLabelText('Sticky'))
+    .toBeInTheDocument();
+});
+
 test('renders login button', () => {
   render(<Login />);
 
