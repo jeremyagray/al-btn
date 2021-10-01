@@ -32,7 +32,7 @@ function SelectorDropDown(props) {
   
   return (
     <div id='SelectorDropDown'>
-      <label htmlFor="graph-select">Select a Graph:</label>
+      <label htmlFor="graph-select">Data Set:</label>
       <br />
       <select
         name="graphs"
