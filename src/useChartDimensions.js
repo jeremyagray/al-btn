@@ -1,4 +1,39 @@
-// Originally from https://wattenberger.com/blog/react-hooks
+/*
+ * Originally from https://wattenberger.com/blog/react-hooks
+ *
+ * The original author maintains all copyright and licensing rights to
+ * the original.
+ *
+ * Modifications:
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+ *
+ * This copyright and licensing is only for modifications to the
+ * original.
+ */
+
+// Dimensions object:
+// {
+//   height: h,
+//   width: w,
+//   marginTop: t,
+//   marginRight: r,
+//   marginBottom: b,
+//   marginLeft: l,
+//   boundedHeight: max(h - t - b, 0),
+//   boundedWidth: max(w - r - l, 0)
+// }
+
+// React.
+import {
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+
+// Polyfillable resize observer.
 import {ResizeObserver} from '@juggle/resize-observer';
 
 const combineChartDimensions = dimensions => {
@@ -34,13 +69,14 @@ export const useChartDimensions = passedSettings => {
 
       const entry = entries[0]
 
-      if (width != entry.contentRect.width) changeWidth(entry.contentRect.width)
-      if (height != entry.contentRect.height) changeHeight(entry.contentRect.height)
+      if (width !== entry.contentRect.width) changeWidth(entry.contentRect.width)
+      if (height !== entry.contentRect.height) changeHeight(entry.contentRect.height)
     })
 
     resizeObserver.observe(element)
 
     return () => resizeObserver.unobserve(element)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const newSettings = combineChartDimensions({
@@ -51,3 +87,5 @@ export const useChartDimensions = passedSettings => {
 
   return [ref, newSettings]
 }
+
+export default useChartDimensions;
