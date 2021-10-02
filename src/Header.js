@@ -34,7 +34,11 @@ function Header() {
               <Nav.Link href="/contact">
                 Contact
               </Nav.Link>
-              <NavDropdown align="end" title="Account" id="albtn-navbar-account-dropdown">
+              <NavDropdown
+                alignRight
+                title="Account"
+                id="albtn-navbar-account-dropdown"
+              >
                 <NavDropdown.Item href="/login">
                   Login
                 </NavDropdown.Item>
