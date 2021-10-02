@@ -22,7 +22,7 @@ function Header() {
         expand="lg"
       >
         <Container>
-          <Navbar.Brand href="/" className="d-none d-sm-block">
+          <Navbar.Brand href="/" className="d-none d-md-block">
             Alabama:  By the Numbers
           </Navbar.Brand>
           <Navbar.Brand href="/" className="d-small d-md-none">
