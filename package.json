@@ -74,6 +74,7 @@
     ],
     "scopes": [
       "assets",
+      "css",
       "data",
       "d3",
       "react"
