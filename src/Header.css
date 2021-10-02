@@ -23,6 +23,7 @@
     color: #b20021;
 }
 
-.navbar-light .navbar-brand {
+.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+    font-weight: bold;
     color: #ffffff;
 }
