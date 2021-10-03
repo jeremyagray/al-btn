@@ -4,16 +4,12 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
-// import {
-//   useState
-// } from 'react';
-
 import './Visualization.css';
 import AlabamaMap from './Counties.js';
 
 function Visualization() {
   return (
-    <div className="AppVisualization">
+    <div className="AppVisualization col-md-8 m-0 p-0">
       <AlabamaMap />
     </div>
   );

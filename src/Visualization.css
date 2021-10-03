@@ -1,4 +1,6 @@
 .AppVisualization {
-    width: 60%;
-    flex-grow: 3;
+}
+
+#viz {
+    min-height: 80vh;
 }
