@@ -101,7 +101,6 @@ const generateMap = (mapData, proj, element, dimensions) => {
 
   // Map projection.
   let projection;
-  console.log(proj);
   if (proj === 'nation50') {
     projection = d3.geoAlbersUsa()
       .fitSize([dimensions.boundedWidth, dimensions.boundedHeight], mapData);
@@ -115,7 +114,6 @@ const generateMap = (mapData, proj, element, dimensions) => {
         .projection(projection);
 
   // Visualization SVG.
-  d3.selectAll('svg').remove();
   const svg = d3.select(element)
         .append("svg")
         .attr("id", "mapSVG")
@@ -126,14 +124,12 @@ const generateMap = (mapData, proj, element, dimensions) => {
         .style('visibility', 'hidden')
 
   // Draw map.
-  svg.append('g')
+  svg
     .selectAll('path')
     .data(mapData.features)
-    .enter()
-    .append('path')
+    .join('path')
     .attr('class', 'nation')
     .style('fill', '#b20021')
-    .style('border', '2px solid black')
     .attr('stroke', '#000000')
     .attr('stroke-linejoin', 'round')
     .attr('d', path)
@@ -143,7 +139,6 @@ const generateMap = (mapData, proj, element, dimensions) => {
   svg
     .style('display', 'block')
     .style('visibility', 'visible')
-
 }
 
 export default NationMap;
