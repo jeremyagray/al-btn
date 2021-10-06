@@ -5,14 +5,21 @@
  */
 
 import './Visualization.css';
-import AlabamaMap from './Counties.js';
+import Map from './Nation.js';
 
-function Visualization() {
-  return (
-    <div className="AppVisualization col-md-8 m-0 p-0">
-      <AlabamaMap />
-    </div>
-  );
+function Visualization(props) {
+  if (props.visualization === 'national') {
+    return (
+      <div className="AppVisualization col-md-8 m-0 p-0">
+        <Map />
+      </div>
+    );
+  } else {
+    return (
+      <div className="AppVisualization col-md-8 m-0 p-0">
+      </div>
+    );
+  }    
 }
 
 export default Visualization;

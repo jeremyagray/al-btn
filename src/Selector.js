@@ -10,37 +10,33 @@ import {
 
 import './Selector.css';
 
-function Selector() {
-  const [graph, setGraph] = useState('counties');
-
-  if (graph === 'counties') {
-    return (
-      <div className="root">
-        <SelectorDropDown
-          graph={graph}
-          setGraph={setGraph}
-        />
-      </div>
-    );
-  }
+function Selector(props) {
+  return (
+    <div className="root">
+      <SelectorDropDown
+        visualization={props.visualization}
+        setVisualization={props.setVisualization}
+      />
+    </div>
+  );
 }
 
 function SelectorDropDown(props) {
   function changer(e) {
-    props.setGraph(e.target.value);
+    props.setVisualization(e.target.value);
   }
   
   return (
     <div id='SelectorDropDown'>
-      <label htmlFor="graph-select">Data Set:</label>
+      <label htmlFor="selectVisualization">Select Visualization</label>
       <br />
       <select
-        name="graphs"
-        id="graph-select"
-        value={props.graph}
+        id="selectVisualization"
+        value={props.visualization}
         onChange={changer}
       >
-        <option value="counties">county data</option>
+        <option value="national">national maps</option>
+        <option value="states">state maps</option>
         <option value="warnings">current NWS alerts</option>
       </select>
     </div>

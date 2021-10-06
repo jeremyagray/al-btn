@@ -15,6 +15,6 @@ test('renders selector', () => {
   render(<Selector />);
   expect(
     screen
-      .getByLabelText('Data Set:'))
+      .getByLabelText('Select Visualization'))
     .toBeInTheDocument();
 });

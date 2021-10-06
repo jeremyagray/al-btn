@@ -8,10 +8,13 @@ import './Controls.css';
 import Selector from './Selector.js';
 import Config from './Config.js';
 
-function Controls() {
+function Controls(props) {
   return (
     <div className="AppControls col-md-4 m-0 p-0">
-      <Selector />
+      <Selector
+        visualization={props.visualization}
+        setVisualization={props.setVisualization}
+      />
       <Config />
     </div>
   );
