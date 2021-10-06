@@ -19,6 +19,7 @@ import axios from 'axios';
 // Local components.
 import useChartDimensions from './useChartDimensions';
 import LoadingSpinner from './LoadingSpinner';
+import LoadingError from './LoadingError';
 
 export const NationMap = () => {
   return (
@@ -59,7 +60,7 @@ const NationMapSVG = () => {
         }
       } catch (error) {
         if (isMounted) {
-          setLoadingDataError(error.message);
+          setLoadingDataError(error);
           setLoadingData(false);
         }
       }
@@ -79,9 +80,9 @@ const NationMapSVG = () => {
     );
   } else if (loadingDataError) {
     return (
-      <LoadingSpinner
+      <LoadingError
         vizRef={ref}
-        errorMessage={loadingDataError}
+        errorMessage={loadingDataError.message}
       />
     );
   }
