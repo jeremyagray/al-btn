@@ -21,15 +21,17 @@ import useChartDimensions from './useChartDimensions';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 
-export const NationMap = () => {
+export const NationMap = (props) => {
   return (
     <div className="NationMap">
-      <NationMapSVG />
+      <NationMapSVG
+        projection={props.projection}
+      />
     </div>
   );
 }
 
-const NationMapSVG = () => {
+const NationMapSVG = (props) => {
   // Dimensions.
   const [ref, dms] = useChartDimensions({
     'marginTop': 30,
@@ -56,7 +58,7 @@ const NationMapSVG = () => {
         if (isMounted) {
           setMapData(mapResponse.data);
           setLoadingData(false);
-          generateMap(mapData, ref.current, dms);
+          generateMap(mapData, props.projection, ref.current, dms);
         }
       } catch (error) {
         if (isMounted) {
@@ -72,7 +74,7 @@ const NationMapSVG = () => {
       isMounted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapData['type'], dms.boundedWidth]);
+  }, [mapData['type'], dms.boundedWidth, props.projection]);
 
   if (loadingData) {
     return (
@@ -95,11 +97,18 @@ const NationMapSVG = () => {
   );
 }
 
-const generateMap = (mapData, element, dimensions) => {
+const generateMap = (mapData, proj, element, dimensions) => {
 
   // Map projection.
-  const projection = d3.geoAlbersUsa()
-        .fitSize([dimensions.boundedWidth, dimensions.boundedHeight], mapData);
+  let projection;
+  console.log(proj);
+  if (proj === 'nation50') {
+    projection = d3.geoAlbersUsa()
+      .fitSize([dimensions.boundedWidth, dimensions.boundedHeight], mapData);
+  } else if (proj === 'nationSingle') {
+    projection = d3.geoAlbers()
+      .fitSize([dimensions.boundedWidth, dimensions.boundedHeight], mapData);
+  }
 
   // Path generator.
   const path = d3.geoPath()

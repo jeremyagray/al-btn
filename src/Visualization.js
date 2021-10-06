@@ -5,13 +5,22 @@
  */
 
 import './Visualization.css';
-import Map from './Nation.js';
+import NationMap from './Nation.js';
+import StateMap from './State.js';
 
 function Visualization(props) {
   if (props.visualization === 'national') {
     return (
       <div className="AppVisualization col-md-8 m-0 p-0">
-        <Map />
+        <NationMap
+          projection={props.projection}
+        />
+      </div>
+    );
+  } else if (props.visualization === 'states') {
+    return (
+      <div className="AppVisualization col-md-8 m-0 p-0">
+        <StateMap />
       </div>
     );
   } else {

@@ -15,7 +15,10 @@ function Controls(props) {
         visualization={props.visualization}
         setVisualization={props.setVisualization}
       />
-      <Config />
+      <Config
+        visualization={props.visualization}
+        setProjection={props.setProjection}
+      />
     </div>
   );
 }
