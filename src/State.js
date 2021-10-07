@@ -21,15 +21,15 @@ import useChartDimensions from './useChartDimensions';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 
-function StateMap() {
+function StateMap(props) {
   return (
     <div className="StateMap">
-      <StateMapSVG />
+      <StateMapSVG showCounties={props.showCounties} />
     </div>
   );
 }
 
-function StateMapSVG() {
+function StateMapSVG(props) {
   // Dimensions.
   const [ref, dms] = useChartDimensions({
     'marginTop': 30,
@@ -54,13 +54,22 @@ function StateMapSVG() {
     async function fetchData() {
       try {
         const stateResponse = await axios.get(stateDataURL);
-        const countyResponse = await axios.get(countyDataURL);
+        let countyResponse;
+        if (props.showCounties) {
+          countyResponse = await axios.get(countyDataURL);
+        }
 
         if (isMounted) {
           setStateData(stateResponse.data);
-          setCountyData(countyResponse.data);
+          if (props.showCounties) {
+            setCountyData(countyResponse.data);
+          }
           setLoadingData(false);
-          generateMap(stateData, countyData, ref.current, dms);
+          if (props.showCounties) {
+            generateMap(stateData, countyData, ref.current, dms);
+          } else {
+            generateMap(stateData, [], ref.current, dms);
+          }
         }
       } catch (error) {
         if (isMounted) {
@@ -76,7 +85,7 @@ function StateMapSVG() {
       isMounted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateData['type'], countyData['type'], dms.boundedWidth]);
+  }, [stateData['type'], countyData['type'], dms.boundedWidth, props.showCounties]);
 
   if (loadingData) {
     return (

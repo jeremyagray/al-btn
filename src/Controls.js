@@ -17,7 +17,10 @@ function Controls(props) {
       />
       <Config
         visualization={props.visualization}
+        projection={props.projection}
         setProjection={props.setProjection}
+        showCounties={props.showCounties}
+        toggleShowCounties={props.toggleShowCounties}
       />
     </div>
   );

@@ -8,7 +8,6 @@ import './Config.css';
 
 const Config = (props) => {
   function changer(e) {
-    console.log(e.target.value);
     props.setProjection(e.target.value);
   }
 
@@ -20,6 +19,7 @@ const Config = (props) => {
         <select
           id="nationSelectProj"
           onChange={changer}
+          value={props.projection}
         >
           <option value="nation50">Albers 50 States</option>
           <option value="nation48">Albers Lower 48</option>
@@ -31,6 +31,14 @@ const Config = (props) => {
   } else {
     return (
       <div className="AppConfig">
+        <label>
+          <input
+            type="checkbox"
+            checked={props.showCounties}
+            onChange={props.toggleShowCounties}
+          />
+          counties
+        </label>
       </div>
     );
   }

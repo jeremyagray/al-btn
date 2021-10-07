@@ -20,7 +20,7 @@ function Visualization(props) {
   } else if (props.visualization === 'states') {
     return (
       <div className="AppVisualization col-md-8 m-0 p-0">
-        <StateMap />
+        <StateMap showCounties={props.showCounties} />
       </div>
     );
   } else {
