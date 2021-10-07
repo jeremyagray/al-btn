@@ -12,6 +12,7 @@ import {
 
 // D3.
 import * as d3 from 'd3';
+import { geoAlbersUsaTerritories } from 'd3-composite-projections';
 
 // Other stuff.
 import axios from 'axios';
@@ -103,6 +104,9 @@ const generateMap = (mapData, proj, element, dimensions) => {
   let projection;
   if (proj === 'nation50') {
     projection = d3.geoAlbersUsa()
+      .fitSize([dimensions.boundedWidth, dimensions.boundedHeight], mapData);
+  } else if (proj === 'nationAll') {
+    projection = geoAlbersUsaTerritories()
       .fitSize([dimensions.boundedWidth, dimensions.boundedHeight], mapData);
   } else if (proj === 'nationSingle') {
     projection = d3.geoAlbers()

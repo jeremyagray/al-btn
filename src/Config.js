@@ -22,7 +22,6 @@ const Config = (props) => {
           value={props.projection}
         >
           <option value="nation50">Albers 50 States</option>
-          <option value="nation48">Albers Lower 48</option>
           <option value="nationAll">States and Territories (Albers Combined)</option>
           <option value="nationSingle">States and Territories (Single Scale)</option>
         </select>
