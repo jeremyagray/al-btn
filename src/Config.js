@@ -4,6 +4,9 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
+// React Bootstrap.
+import Form from 'react-bootstrap/Form';
+
 import './Config.css';
 
 const Config = (props) => {
@@ -25,27 +28,25 @@ const Config = (props) => {
           <option value="nationAll">States and Territories (Albers Combined)</option>
           <option value="nationSingle">States and Territories (Single Scale)</option>
         </select>
-        <label>
-          <input
-            type="checkbox"
-            checked={props.showStates}
-            onChange={props.toggleShowStates}
-          />
-          states
-        </label>
+        <Form.Check
+          type="checkbox"
+          checked={props.showStates}
+          onChange={props.toggleShowStates}
+          label="show states"
+          id="showStates"
+        />
       </div>
     );
   } else {
     return (
       <div className="AppConfig">
-        <label>
-          <input
-            type="checkbox"
-            checked={props.showCounties}
-            onChange={props.toggleShowCounties}
-          />
-          counties
-        </label>
+        <Form.Check
+          type="checkbox"
+          checked={props.showCounties}
+          onChange={props.toggleShowCounties}
+          label="show counties"
+          id="showCounties"
+        />
       </div>
     );
   }
