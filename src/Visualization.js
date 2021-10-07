@@ -14,13 +14,16 @@ function Visualization(props) {
       <div className="AppVisualization col-md-8 m-0 p-0">
         <NationMap
           projection={props.projection}
+          showStates={props.showStates}
         />
       </div>
     );
   } else if (props.visualization === 'states') {
     return (
       <div className="AppVisualization col-md-8 m-0 p-0">
-        <StateMap showCounties={props.showCounties} />
+        <StateMap
+          showCounties={props.showCounties}
+        />
       </div>
     );
   } else {

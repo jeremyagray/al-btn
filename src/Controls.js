@@ -21,6 +21,8 @@ function Controls(props) {
         setProjection={props.setProjection}
         showCounties={props.showCounties}
         toggleShowCounties={props.toggleShowCounties}
+        showStates={props.showStates}
+        toggleShowStates={props.toggleShowStates}
       />
     </div>
   );

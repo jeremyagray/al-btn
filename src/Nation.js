@@ -27,6 +27,7 @@ export const NationMap = (props) => {
     <div className="NationMap">
       <NationMapSVG
         projection={props.projection}
+        showStates={props.showStates}
       />
     </div>
   );
@@ -43,11 +44,13 @@ const NationMapSVG = (props) => {
 
   // Data state.
   const [mapData, setMapData] = useState({'type': ''});
+  const [stateData, setStateData] = useState({'type': ''});
   const [loadingData, setLoadingData] = useState(true);
   const [loadingDataError, setLoadingDataError] = useState(null);
 
   useEffect(() => {
-    const mapDataURL = 'http://127.0.0.1:3002/api/v1/geography/nation';
+    const mapDataURL = 'http://192.168.1.67:3002/api/v1/geography/nation';
+    const stateDataURL = 'http://192.168.1.67:3002/api/v1/geography/states/all';
 
     let isMounted = true;
     setLoadingData(true);
@@ -55,11 +58,22 @@ const NationMapSVG = (props) => {
     async function fetchData() {
       try {
         const mapResponse = await axios.get(mapDataURL);
+        let stateResponse;
+        if (props.showStates) {
+          stateResponse = await axios.get(stateDataURL);
+        }
 
         if (isMounted) {
           setMapData(mapResponse.data);
+          if (props.showStates) {
+            setStateData(stateResponse.data);
+          }
           setLoadingData(false);
-          generateMap(mapData, props.projection, ref.current, dms);
+          if (props.showStates) {
+            generateMap(mapData, stateData, props.projection, ref.current, dms);
+          } else {
+            generateMap(mapData, [], props.projection, ref.current, dms);
+          }
         }
       } catch (error) {
         if (isMounted) {
@@ -75,7 +89,7 @@ const NationMapSVG = (props) => {
       isMounted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapData['type'], dms.boundedWidth, props.projection]);
+  }, [mapData['type'], stateData['type'], dms.boundedWidth, props.projection, props.showStates]);
 
   if (loadingData) {
     return (
@@ -98,7 +112,7 @@ const NationMapSVG = (props) => {
   );
 }
 
-const generateMap = (mapData, proj, element, dimensions) => {
+const generateMap = (mapData, stateData, proj, element, dimensions) => {
 
   // Map projection.
   let projection;
@@ -119,15 +133,15 @@ const generateMap = (mapData, proj, element, dimensions) => {
 
   // Visualization SVG.
   const svg = d3.select(element)
-        .append("svg")
-        .attr("id", "mapSVG")
-        .attr("height", dimensions.height)
-        .attr("width", dimensions.width)
-        .style('background-color', '#ffffff')
-        .style('display', 'none')
-        .style('visibility', 'hidden')
+    .append('svg')
+    .attr("id", "mapSVG")
+    .attr("height", dimensions.height)
+    .attr("width", dimensions.width)
+    .style('background-color', '#ffffff')
+    .style('display', 'none')
+    .style('visibility', 'hidden');
 
-  // Draw map.
+  // Draw national boundaries.
   svg
     .selectAll('path')
     .data(mapData.features)
@@ -139,6 +153,21 @@ const generateMap = (mapData, proj, element, dimensions) => {
     .attr('d', path)
     .attr('transform',
           `translate(${dimensions.marginLeft}, ${dimensions.marginTop})`);
+
+  // Draw state boundaries.
+  if (stateData.features) {
+    svg
+      .selectAll('path')
+      .data(stateData.features)
+      .join('path')
+      .attr('class', 'state')
+      .style('fill', '#b20021')
+      .attr('stroke', '#000000')
+      .attr('stroke-linejoin', 'round')
+      .attr('d', path)
+      .attr('transform',
+            `translate(${dimensions.marginLeft}, ${dimensions.marginTop})`);
+  }
 
   svg
     .style('display', 'block')

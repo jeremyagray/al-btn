@@ -25,6 +25,14 @@ const Config = (props) => {
           <option value="nationAll">States and Territories (Albers Combined)</option>
           <option value="nationSingle">States and Territories (Single Scale)</option>
         </select>
+        <label>
+          <input
+            type="checkbox"
+            checked={props.showStates}
+            onChange={props.toggleShowStates}
+          />
+          states
+        </label>
       </div>
     );
   } else {
