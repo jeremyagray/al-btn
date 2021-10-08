@@ -17,24 +17,32 @@ const Config = (props) => {
   if (props.visualization === 'national') {
     return (
       <div className="AppConfig">
-        <label htmlFor="nationSelectProj">Select Projection</label>
-        <br />
-        <select
-          id="nationSelectProj"
-          onChange={changer}
-          value={props.projection}
-        >
-          <option value="nation50">Albers 50 States</option>
-          <option value="nationAll">States and Territories (Albers Combined)</option>
-          <option value="nationSingle">States and Territories (Single Scale)</option>
-        </select>
-        <Form.Check
-          type="checkbox"
-          checked={props.showStates}
-          onChange={props.toggleShowStates}
-          label="show states"
-          id="showStates"
-        />
+        <Form.Group>
+          <Form.Label
+            htmlFor="NationSelectProjection"
+          >
+            Select Projection
+          </Form.Label>
+          <Form.Control
+            as="select"
+            id="NationSelectProjection"
+            onChange={changer}
+            value={props.projection}
+          >
+            <option value="nation50">Albers 50 States</option>
+            <option value="nationAll">States and Territories (Albers Combined)</option>
+            <option value="nationSingle">States and Territories (Single Scale)</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group>
+          <Form.Check
+            type="checkbox"
+            checked={props.showStates}
+            onChange={props.toggleShowStates}
+            label="show states"
+            id="NationShowStates"
+          />
+        </Form.Group>
       </div>
     );
   } else {

@@ -4,15 +4,16 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
-import {
-  useState
-} from 'react';
+// React Bootstrap.
+import Form from 'react-bootstrap/Form';
 
 import './Selector.css';
 
 function Selector(props) {
   return (
-    <div className="root">
+    <div
+      id="Selector"
+    >
       <SelectorDropDown
         visualization={props.visualization}
         setVisualization={props.setVisualization}
@@ -28,17 +29,23 @@ function SelectorDropDown(props) {
   
   return (
     <div id='SelectorDropDown'>
-      <label htmlFor="selectVisualization">Select Visualization</label>
-      <br />
-      <select
-        id="selectVisualization"
-        value={props.visualization}
-        onChange={changer}
-      >
-        <option value="national">national maps</option>
-        <option value="states">state maps</option>
-        <option value="warnings">current NWS alerts</option>
-      </select>
+      <Form.Group>
+        <Form.Label
+          htmlFor="SelectorSelectVisualization"
+        >
+          Select Visualization
+        </Form.Label>
+        <Form.Control
+          as="select"
+          id="SelectorSelectVisualization"
+          onChange={changer}
+          value={props.projection}
+        >
+          <option value="national">national maps</option>
+          <option value="states">state maps</option>
+          <option value="warnings">current NWS alerts</option>
+        </Form.Control>
+      </Form.Group>
     </div>
   );
 }
