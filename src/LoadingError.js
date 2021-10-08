@@ -6,10 +6,7 @@
 
 export const LoadingError = (props) => {
   return (
-    <div
-      id="viz"
-      ref={props.vizRef}
-    >
+    <div>
       <p>
         Error loading data:  {props.errorMessage}
       </p>

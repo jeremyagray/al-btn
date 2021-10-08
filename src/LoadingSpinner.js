@@ -10,9 +10,7 @@ import Spinner from 'react-bootstrap/Spinner';
 export const LoadingSpinner = (props) => {
   return (
     <div
-      id="viz"
-      ref={props.vizRef}
-      className="d-flex"
+      className="d-flex mx-auto"
     >
       <Spinner
         animation="border"
