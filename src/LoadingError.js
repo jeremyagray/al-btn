@@ -7,9 +7,17 @@
 export const LoadingError = (props) => {
   return (
     <div>
-      <p>
-        Error loading data:  {props.errorMessage}
-      </p>
+      {props.errors.map((error) => {
+        if (error) {
+          return (
+            <p>
+              Error loading data:  {error.message}
+            </p>
+          );
+        }
+
+        return (<></>);
+      })}
     </div>
   );
 }
