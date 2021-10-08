@@ -13,23 +13,25 @@ import {
 // Other stuff.
 import axios from 'axios';
 
-export const useFetchData = (url) => {
+export const useFetchData = (url, dataDefault = null) => {
   // Data state.
-  const [data, setData] = useState({'type': ''});
+  const [data, setData] = useState(dataDefault);
   const [loadingData, setLoadingData] = useState(true);
   const [loadingDataError, setLoadingDataError] = useState(null);
 
   useEffect(() => {
-    if (! url) {
-      return [ null, false, null ];
-    }
-
     let isMounted = true;
     setLoadingData(true);
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
+        let response = {};
+
+        if (! url) {
+          response.data = dataDefault;
+        } else {
+          response = await axios.get(url);
+        }
 
         if (isMounted) {
           setData(response.data);
