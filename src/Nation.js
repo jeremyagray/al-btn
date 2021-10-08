@@ -28,7 +28,27 @@ export const NationMap = (props) => {
     nationLoadingDataError
   ] = useFetchData('http://192.168.1.67:3002/api/v1/geography/nation');
 
-  if (nationLoadingData) {
+  let statesUrl = '';
+  if (props.showStates) {
+    statesUrl = 'http://192.168.1.67:3002/api/v1/geography/states/all';
+  }
+
+  const [
+    statesData,
+    statesLoadingData,
+    statesLoadingDataError
+  ] = useFetchData(statesUrl, {'features': []});
+
+  const statuses = [
+    nationLoadingData,
+    statesLoadingData
+  ];
+  const errors = [
+    nationLoadingDataError,
+    statesLoadingDataError
+  ];
+
+  if (statuses.some(Boolean)) {
     return (
       <div
         className="visualization d-flex"
@@ -37,14 +57,14 @@ export const NationMap = (props) => {
         <LoadingSpinner />
       </div>
     );
-  } else if (nationLoadingDataError) {
+  } else if (errors.some(Boolean)) {
     return (
       <div
         className="visualization"
         ref={ref}
       >
         <LoadingError
-          errorMessage={nationLoadingDataError.message}
+          errors={errors}
         />
       </div>
     );
@@ -78,22 +98,42 @@ export const NationMap = (props) => {
             'backgroundColor': '#ffffff'
           }}
         >
-        {nationData.features.map((feat) => {
-          return (
-            <path
-              className="nation"
-              key={feat.properties.GEOID}
-              stroke="#000000"
-              strokeLinejoin="round"
-              d={path(feat)}
-              transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
-              style={{
-                'fill': '#b20021'
-              }}
-            >
-            </path>
-          );
-        })}
+          <g>
+            {nationData.features.map((feat) => {
+              return (
+                <path
+                  className="nation"
+                  key={feat.properties.GEOID}
+                  stroke="#000000"
+                  strokeLinejoin="round"
+                  d={path(feat)}
+                  transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
+                  style={{
+                    'fill': '#b20021'
+                  }}
+                >
+                </path>
+              );
+            })}
+          </g>
+          <g>
+            {statesData.features.map((feat) => {
+              return (
+                <path
+                  className="state"
+                  key={feat.properties.GEOID}
+                  stroke="#000000"
+                  strokeLinejoin="round"
+                  d={path(feat)}
+                  transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
+                  style={{
+                    'fill': '#b20021'
+                  }}
+                >
+                </path>
+              );
+            })}
+          </g>
         </svg>
       </div>
     );
