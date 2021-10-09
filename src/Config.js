@@ -55,6 +55,13 @@ const Config = (props) => {
           label="show counties"
           id="showCounties"
         />
+        <Form.Check
+          type="checkbox"
+          checked={props.showWeatherAlerts}
+          onChange={props.toggleShowWeatherAlerts}
+          label="show weather alerts"
+          id="showWeatherAlerts"
+        />
       </div>
     );
   }

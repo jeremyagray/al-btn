@@ -23,6 +23,7 @@ function Visualization(props) {
       <div className="AppVisualization col-md-8 m-0 p-0">
         <StateMap
           showCounties={props.showCounties}
+          showWeatherAlerts={props.showWeatherAlerts}
         />
       </div>
     );

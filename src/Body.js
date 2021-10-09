@@ -21,7 +21,6 @@ function Body() {
 
   const toggleShowStates = () => {
     setShowStates(!showStates);
-    console.log(showStates);
   }
 
   // State map state.
@@ -29,6 +28,13 @@ function Body() {
 
   const toggleShowCounties = () => {
     setShowCounties(!showCounties);
+  }
+
+  // Weather state.
+  const [showWeatherAlerts, setShowWeatherAlerts] = useState(false);
+
+  const toggleShowWeatherAlerts = () => {
+    setShowWeatherAlerts(!showWeatherAlerts);
   }
 
   return (
@@ -39,6 +45,7 @@ function Body() {
           projection={projection}
           showCounties={showCounties}
           showStates={showStates}
+          showWeatherAlerts={showWeatherAlerts}
         />
         <Controls
           visualization={visualization}
@@ -49,6 +56,8 @@ function Body() {
           toggleShowCounties={toggleShowCounties}
           showStates={showStates}
           toggleShowStates={toggleShowStates}
+          showWeatherAlerts={showWeatherAlerts}
+          toggleShowWeatherAlerts={toggleShowWeatherAlerts}
         />
       </div>
     </div>

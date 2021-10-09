@@ -21,6 +21,8 @@ function Controls(props) {
         setProjection={props.setProjection}
         showCounties={props.showCounties}
         toggleShowCounties={props.toggleShowCounties}
+        showWeatherAlerts={props.showWeatherAlerts}
+        toggleShowWeatherAlerts={props.toggleShowWeatherAlerts}
         showStates={props.showStates}
         toggleShowStates={props.toggleShowStates}
       />

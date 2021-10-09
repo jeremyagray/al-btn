@@ -39,13 +39,26 @@ export const StateMap = (props) => {
     countiesLoadingDataError
   ] = useFetchData(countiesUrl, {'features': []});
 
+  let wxDataUrl;
+  if (props.showWeatherAlerts) {
+    wxDataUrl = 'https://api.weather.gov/alerts/active/area/AL';
+  }
+
+  const [
+    wxData,
+    wxLoadingData,
+    wxLoadingDataError
+  ] = useFetchData(wxDataUrl, {'features': []});
+
   const statuses = [
     stateLoadingData,
-    countiesLoadingData
+    countiesLoadingData,
+    wxLoadingData
   ];
   const errors = [
     stateLoadingDataError,
-    countiesLoadingDataError
+    countiesLoadingDataError,
+    wxLoadingDataError
   ];
 
   if (statuses.some(Boolean)) {
@@ -123,6 +136,25 @@ export const StateMap = (props) => {
                   transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
                   style={{
                     'fill': '#b20021'
+                  }}
+                >
+                </path>
+              );
+            })}
+          </g>
+          <g>
+            {wxData.features.map((feat) => {
+              return (
+                <path
+                  className="wxAlert"
+                  key={feat.properties.id}
+                  stroke="#0000ff"
+                  strokeLinejoin="round"
+                  d={path(feat)}
+                  transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
+                  style={{
+                    'fill': '#0000ff',
+                    'opacity': '0.50'
                   }}
                 >
                 </path>
