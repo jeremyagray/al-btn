@@ -12,6 +12,7 @@ import useChartDimensions from './useChartDimensions';
 import useFetchData from './useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
+import MakePathGroup from './MakePathGroup';
 
 export const StateMap = (props) => {
   const [ref, dms] = useChartDimensions({
@@ -142,25 +143,22 @@ export const StateMap = (props) => {
               );
             })}
           </g>
-          <g>
-            {wxData.features.map((feat) => {
-              return (
-                <path
-                  className="wxAlert"
-                  key={feat.properties.id}
-                  stroke="#0000ff"
-                  strokeLinejoin="round"
-                  d={path(feat)}
-                  transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
-                  style={{
-                    'fill': '#0000ff',
-                    'opacity': '0.50'
-                  }}
-                >
-                </path>
-              );
-            })}
-          </g>
+          <MakePathGroup
+            features={wxData.features}
+            pathClassName="wxAlert"
+            strokeColor="#0000ff"
+            strokeLinejoin="round"
+            pathFunction={path}
+            getId={(feat) => {
+              return feat.properties.id;
+            }}
+            marginLeft={dms.marginLeft}
+            marginTop={dms.marginTop}
+            styling={{
+              'fill': '#0000ff',
+              'opacity': '0.50'
+            }}
+          />
         </svg>
       </div>
     );
