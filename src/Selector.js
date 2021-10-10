@@ -43,7 +43,6 @@ function SelectorDropDown(props) {
         >
           <option value="national">national maps</option>
           <option value="states">state maps</option>
-          <option value="warnings">current NWS alerts</option>
         </Form.Control>
       </Form.Group>
     </div>
