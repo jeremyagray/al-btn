@@ -189,10 +189,7 @@ export const StateMap = (props) => {
             }}
             marginLeft={dms.marginLeft}
             marginTop={dms.marginTop}
-            styling={{
-              'fill': '#0000ff',
-              'opacity': props.alertOpacity
-            }}
+            alertOpacity={props.alertOpacity}
             clipToState={props.clipToState}
             clipPath="statePathClipPath"
           />
