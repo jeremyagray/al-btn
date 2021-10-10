@@ -199,7 +199,7 @@ export const StateMap = (props) => {
           <Radar
             dms={dms}
             projection={projection}
-            opacity="0.50"
+            opacity={props.radarOpacity}
             showRadar={props.showRadar}
             clipToState={props.clipToState}
             clipPath="stateImageClipPath"

@@ -29,6 +29,8 @@ function Controls(props) {
         toggleShowStates={props.toggleShowStates}
         showRadar={props.showRadar}
         toggleShowRadar={props.toggleShowRadar}
+        radarOpacity={props.radarOpacity}
+        updateRadarOpacity={props.updateRadarOpacity}
       />
     </div>
   );

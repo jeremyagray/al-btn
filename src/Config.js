@@ -69,6 +69,23 @@ const Config = (props) => {
           label="show radar"
           id="showRadar"
         />
+        <Form.Group>
+          <Form.Label
+            htmlFor="radarOpacity"
+          >
+            Radar Opacity
+          </Form.Label>
+          <input
+            type="range"
+            className="form-range"
+            id="radarOpacity"
+            min="0.00"
+            max="1.00"
+            step="0.01"
+            value={props.radarOpacity}
+            onChange={props.updateRadarOpacity}
+          />
+        </Form.Group>
         <Form.Check
           type="checkbox"
           checked={props.showWeatherAlerts}

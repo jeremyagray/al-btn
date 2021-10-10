@@ -44,6 +44,13 @@ function Body() {
     setShowRadar(!showRadar);
   }
 
+  // Radar opacity state.
+  const [radarOpacity, setRadarOpacity] = useState(0.50);
+
+  const updateRadarOpacity = (event) => {
+    setRadarOpacity(event.target.value);
+  }
+
   // Clip to state boundard state.
   const [clipToState, setClipToState] = useState(false);
 
@@ -62,6 +69,7 @@ function Body() {
           showStates={showStates}
           showWeatherAlerts={showWeatherAlerts}
           showRadar={showRadar}
+          radarOpacity={radarOpacity}
         />
         <Controls
           visualization={visualization}
@@ -78,6 +86,8 @@ function Body() {
           toggleShowWeatherAlerts={toggleShowWeatherAlerts}
           showRadar={showRadar}
           toggleShowRadar={toggleShowRadar}
+          radarOpacity={radarOpacity}
+          updateRadarOpacity={updateRadarOpacity}
         />
       </div>
     </div>
