@@ -13,7 +13,7 @@ import {
 // Other stuff.
 import axios from 'axios';
 
-export const useFetchData = (url, dataDefault = null) => {
+export const useFetchData = (url, dataDefault = null, config = {}) => {
   // Data state.
   const [data, setData] = useState(dataDefault);
   const [loadingData, setLoadingData] = useState(true);
@@ -30,7 +30,7 @@ export const useFetchData = (url, dataDefault = null) => {
         if (! url) {
           response.data = dataDefault;
         } else {
-          response = await axios.get(url);
+          response = await axios.get(url, config);
         }
 
         if (isMounted) {
