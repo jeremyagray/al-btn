@@ -11,7 +11,7 @@ import './Contact.css';
 
 function Contact() {
   return (
-    <div className="AppContact">
+    <div className="AppContact p-3">
       <h2>
         Contact
       </h2>
