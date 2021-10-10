@@ -93,6 +93,23 @@ const Config = (props) => {
           label="show weather alerts"
           id="showWeatherAlerts"
         />
+        <Form.Group>
+          <Form.Label
+            htmlFor="alertOpacity"
+          >
+            Alert Opacity
+          </Form.Label>
+          <input
+            type="range"
+            className="form-range"
+            id="alertOpacity"
+            min="0.00"
+            max="1.00"
+            step="0.01"
+            value={props.alertOpacity}
+            onChange={props.updateAlertOpacity}
+          />
+        </Form.Group>
       </div>
     );
   }

@@ -27,6 +27,7 @@ function Visualization(props) {
           showWeatherAlerts={props.showWeatherAlerts}
           showRadar={props.showRadar}
           radarOpacity={props.radarOpacity}
+          alertOpacity={props.alertOpacity}
         />
       </div>
     );

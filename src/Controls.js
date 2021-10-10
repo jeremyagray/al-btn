@@ -31,6 +31,8 @@ function Controls(props) {
         toggleShowRadar={props.toggleShowRadar}
         radarOpacity={props.radarOpacity}
         updateRadarOpacity={props.updateRadarOpacity}
+        alertOpacity={props.alertOpacity}
+        updateAlertOpacity={props.updateAlertOpacity}
       />
     </div>
   );
