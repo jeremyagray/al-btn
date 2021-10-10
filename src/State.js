@@ -13,8 +13,9 @@ import useFetchData from './useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 import MakePathGroup from './MakePathGroup';
+import Radar from './Radar';
 
-import radar from './img.png';
+// import radar from './img.png';
 
 export const StateMap = (props) => {
   const [ref, dms] = useChartDimensions({
@@ -87,18 +88,14 @@ export const StateMap = (props) => {
   } else {
     // Map projection.
     // Alabama's geographic center: [ 32*50'5'', 86*38'50'']
+    // Albers projection, like national map.
     // const projection = d3.geoAlbers()
-          // .parallels([30, 35])
+    //   .parallels([30, 35])
+    // Spherical Mercator, like NWS radar and rest of web.
     const projection = d3.geoMercator()
           .center([0, (32 + (50/60) + (5/3600))])
           .rotate([(86 + (38/60) + (50/3600)), 0])
           .fitSize([dms.boundedWidth, dms.boundedHeight], stateData.features[0]);
-
-    const [miny, maxx] = projection.invert([0, 0]);
-    const [maxy, minx] = projection.invert([dms.boundedWidth, dms.boundedHeight]);
-
-    // https://opengeo.ncep.noaa.gov/geoserver/kbmx/ows?service=wms&version=1.3.0&request=GetMap&format=image/png&&layers=kbmx_bref_raw&crs=EPSG:4326&transparent=true&width=${Math.floor(dms.width)}&height=${Math.floor(dms.height)}&bbox=${minx},${miny},${maxx},${maxy}
-    // console.log(`width=${dms.boundedWidth}&height=${dms.boundedHeight}&bbox=${minx},${miny},${maxx},${maxy}`);
 
     // Path generator.
     const path = d3.geoPath().projection(projection);
@@ -168,16 +165,11 @@ export const StateMap = (props) => {
               'opacity': '0.50'
             }}
           />
-          <image
-            id="radar"
-            href={radar}
-            width={dms.boundedWidth}
-            height={dms.boundedHeight}
-            x={dms.marginLeft}
-            y={dms.marginTop}
-            style={{
-              'opacity': '0.50'
-            }}
+          <Radar
+            dms={dms}
+            projection={projection}
+            opacity="0.50"
+            showRadar={props.showRadar}
           />
         </svg>
       </div>

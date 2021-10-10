@@ -25,6 +25,8 @@ function Controls(props) {
         toggleShowWeatherAlerts={props.toggleShowWeatherAlerts}
         showStates={props.showStates}
         toggleShowStates={props.toggleShowStates}
+        showRadar={props.showRadar}
+        toggleShowRadar={props.toggleShowRadar}
       />
     </div>
   );

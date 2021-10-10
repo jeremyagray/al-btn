@@ -37,6 +37,13 @@ function Body() {
     setShowWeatherAlerts(!showWeatherAlerts);
   }
 
+  // Radar state.
+  const [showRadar, setShowRadar] = useState(false);
+
+  const toggleShowRadar = () => {
+    setShowRadar(!showRadar);
+  }
+
   return (
     <div className="AppBody container-fluid m-0 p-0">
       <div className="row m-0 p-0">
@@ -46,6 +53,7 @@ function Body() {
           showCounties={showCounties}
           showStates={showStates}
           showWeatherAlerts={showWeatherAlerts}
+          showRadar={showRadar}
         />
         <Controls
           visualization={visualization}
@@ -58,6 +66,8 @@ function Body() {
           toggleShowStates={toggleShowStates}
           showWeatherAlerts={showWeatherAlerts}
           toggleShowWeatherAlerts={toggleShowWeatherAlerts}
+          showRadar={showRadar}
+          toggleShowRadar={toggleShowRadar}
         />
       </div>
     </div>

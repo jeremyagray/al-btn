@@ -57,6 +57,13 @@ const Config = (props) => {
         />
         <Form.Check
           type="checkbox"
+          checked={props.showRadar}
+          onChange={props.toggleShowRadar}
+          label="show radar"
+          id="showRadar"
+        />
+        <Form.Check
+          type="checkbox"
           checked={props.showWeatherAlerts}
           onChange={props.toggleShowWeatherAlerts}
           label="show weather alerts"

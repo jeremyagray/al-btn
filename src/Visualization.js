@@ -24,6 +24,7 @@ function Visualization(props) {
         <StateMap
           showCounties={props.showCounties}
           showWeatherAlerts={props.showWeatherAlerts}
+          showRadar={props.showRadar}
         />
       </div>
     );
