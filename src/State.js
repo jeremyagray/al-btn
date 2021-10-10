@@ -113,6 +113,35 @@ export const StateMap = (props) => {
             'backgroundColor': '#ffffff'
           }}
         >
+          <defs>
+            <clipPath
+              id="stateImageClipPath"
+            >
+              {stateData.features.map((feat) => {
+                return (
+                  <path
+                    key={feat.properties.GEOID}
+                    d={path(feat)}
+                    transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
+                  >
+                  </path>
+                );
+              })}
+            </clipPath>
+            <clipPath
+              id="statePathClipPath"
+            >
+              {stateData.features.map((feat) => {
+                return (
+                  <path
+                    key={feat.properties.GEOID}
+                    d={path(feat)}
+                  >
+                  </path>
+                );
+              })}
+            </clipPath>
+          </defs>
           <g>
             {stateData.features.map((feat) => {
               return (
@@ -164,12 +193,16 @@ export const StateMap = (props) => {
               'fill': '#0000ff',
               'opacity': '0.50'
             }}
+            clipToState={props.clipToState}
+            clipPath="statePathClipPath"
           />
           <Radar
             dms={dms}
             projection={projection}
             opacity="0.50"
             showRadar={props.showRadar}
+            clipToState={props.clipToState}
+            clipPath="stateImageClipPath"
           />
         </svg>
       </div>

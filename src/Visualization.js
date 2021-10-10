@@ -22,6 +22,7 @@ function Visualization(props) {
     return (
       <div className="AppVisualization col-md-8 m-0 p-0">
         <StateMap
+          clipToState={props.clipToState}
           showCounties={props.showCounties}
           showWeatherAlerts={props.showWeatherAlerts}
           showRadar={props.showRadar}

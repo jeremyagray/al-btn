@@ -19,6 +19,8 @@ function Controls(props) {
         visualization={props.visualization}
         projection={props.projection}
         setProjection={props.setProjection}
+        clipToState={props.clipToState}
+        toggleClipToState={props.toggleClipToState}
         showCounties={props.showCounties}
         toggleShowCounties={props.toggleShowCounties}
         showWeatherAlerts={props.showWeatherAlerts}

@@ -50,6 +50,13 @@ const Config = (props) => {
       <div className="AppConfig">
         <Form.Check
           type="checkbox"
+          checked={props.clipToState}
+          onChange={props.toggleClipToState}
+          label="clip to state"
+          id="clipToState"
+        />
+        <Form.Check
+          type="checkbox"
           checked={props.showCounties}
           onChange={props.toggleShowCounties}
           label="show counties"

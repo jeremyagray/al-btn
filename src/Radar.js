@@ -25,6 +25,23 @@ const Radar = (props) => {
   ] = useFetchData(radarDataUrl, null, {'responseType': 'blob'});
 
   if (props.showRadar && radarData) {
+    if (props.clipToState) {
+      return (
+        <image
+          id="radar"
+          href={URL.createObjectURL(radarData)}
+          width={props.dms.boundedWidth}
+          height={props.dms.boundedHeight}
+          x={props.dms.marginLeft}
+          y={props.dms.marginRight}
+          style={{
+            'opacity': props.opacity
+          }}
+          clipPath={`url(#${props.clipPath})`}
+        />
+      );
+    }
+
     return (
       <image
         id="radar"
@@ -38,11 +55,11 @@ const Radar = (props) => {
         }}
       />
     );
-  } else {
-    return (
-      <></>
-    );
   }
+
+  return (
+    <></>
+  );
 }
 
 export default Radar;

@@ -44,12 +44,20 @@ function Body() {
     setShowRadar(!showRadar);
   }
 
+  // Clip to state boundard state.
+  const [clipToState, setClipToState] = useState(false);
+
+  const toggleClipToState = () => {
+    setClipToState(!clipToState);
+  }
+
   return (
     <div className="AppBody container-fluid m-0 p-0">
       <div className="row m-0 p-0">
         <Visualization
           visualization={visualization}
           projection={projection}
+          clipToState={clipToState}
           showCounties={showCounties}
           showStates={showStates}
           showWeatherAlerts={showWeatherAlerts}
@@ -60,6 +68,8 @@ function Body() {
           setVisualization={setVisualization}
           projection={projection}
           setProjection={setProjection}
+          clipToState={clipToState}
+          toggleClipToState={toggleClipToState}
           showCounties={showCounties}
           toggleShowCounties={toggleShowCounties}
           showStates={showStates}
