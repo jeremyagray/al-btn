@@ -7,6 +7,8 @@
 // React Bootstrap.
 import Form from 'react-bootstrap/Form';
 
+import RadarLegend from './RadarLegend';
+
 import './Config.css';
 
 const Config = (props) => {
@@ -86,6 +88,9 @@ const Config = (props) => {
             onChange={props.updateRadarOpacity}
           />
         </Form.Group>
+        <RadarLegend
+          showRadar={props.showRadar}
+        />
         <Form.Check
           type="checkbox"
           checked={props.showWeatherAlerts}
