@@ -120,7 +120,7 @@ export const StateMap = (props) => {
               {stateData.features.map((feat) => {
                 return (
                   <path
-                    key={feat.properties.GEOID}
+                    key={feat.properties.geoid}
                     d={path(feat)}
                     transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
                   >
@@ -134,7 +134,7 @@ export const StateMap = (props) => {
               {stateData.features.map((feat) => {
                 return (
                   <path
-                    key={feat.properties.GEOID}
+                    key={feat.properties.geoid}
                     d={path(feat)}
                   >
                   </path>
@@ -147,7 +147,7 @@ export const StateMap = (props) => {
               return (
                 <path
                   className="state"
-                  key={feat.properties.GEOID}
+                  key={feat.properties.geoid}
                   stroke="#000000"
                   strokeLinejoin="round"
                   d={path(feat)}
@@ -165,7 +165,7 @@ export const StateMap = (props) => {
               return (
                 <path
                   className="county"
-                  key={feat.properties.GEOID}
+                  key={feat.properties.geoid}
                   stroke="#000000"
                   strokeLinejoin="round"
                   d={path(feat)}

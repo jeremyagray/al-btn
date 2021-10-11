@@ -121,7 +121,7 @@ export const NationMap = (props) => {
               return (
                 <path
                   className="state"
-                  key={feat.properties.GEOID}
+                  key={feat.properties.geoid}
                   stroke="#000000"
                   strokeLinejoin="round"
                   d={path(feat)}
