@@ -8,7 +8,7 @@ import useFetchData from './useFetchData';
 
 const colorsUrl = 'http://192.168.1.67:3002/api/v1/weather/nws/alert/colors/all';
 
-export const MakePathGroup = (props) => {
+export const WeatherAlerts = (props) => {
   const [
     colorsData,
   ] = useFetchData(colorsUrl);
@@ -73,4 +73,4 @@ export const MakePathGroup = (props) => {
   );
 }
 
-export default MakePathGroup;
+export default WeatherAlerts;
