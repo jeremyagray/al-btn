@@ -11,8 +11,6 @@ const colorsUrl = 'http://192.168.1.67:3002/api/v1/weather/nws/alert/colors/all'
 export const MakePathGroup = (props) => {
   const [
     colorsData,
-    colorsLoadingData,
-    colorsLoadingDataError
   ] = useFetchData(colorsUrl);
 
   const getFillColor = (feat) => {

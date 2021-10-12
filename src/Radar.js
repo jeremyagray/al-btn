@@ -20,8 +20,6 @@ const Radar = (props) => {
 
   const [
     radarData,
-    radarLoadingData,
-    radarLoadingDataError
   ] = useFetchData(radarDataUrl, null, {'responseType': 'blob'});
 
   if (props.showRadar && radarData) {

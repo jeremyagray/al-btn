@@ -4,11 +4,6 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
-// React components.
-import {
-  useState
-} from 'react';
-
 import useFetchData from './useFetchData';
 
 import './RadarLegend.css';
