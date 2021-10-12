@@ -14,10 +14,16 @@ import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 import MakePathGroup from './MakePathGroup';
 import Radar from './Radar';
+import Counties from './Counties';
 
-// import radar from './img.png';
 
 export const StateMap = (props) => {
+  // Alabama's geographic center: [ 32*50'5'', 86*38'50'']
+  const geoCenter = {
+    'latitude': 32 + (50/60) + (5/3600),
+    'longitude': -(86 + (38/60) + (50/3600))
+  };
+
   const [ref, dms] = useChartDimensions({
     'marginTop': 30,
     'marginRight': 30,
@@ -32,17 +38,6 @@ export const StateMap = (props) => {
   ] = useFetchData('http://192.168.1.67:3002/api/v1/geography/states/usps/al');
 
 
-  let countiesUrl = '';
-  if (props.showCounties) {
-    countiesUrl = 'http://192.168.1.67:3002/api/v1/geography/counties/state/usps/al/all';
-  }
-
-  const [
-    countiesData,
-    countiesLoadingData,
-    countiesLoadingDataError
-  ] = useFetchData(countiesUrl, {'features': []});
-
   let wxDataUrl;
   if (props.showWeatherAlerts) {
     wxDataUrl = 'https://api.weather.gov/alerts/active/area/AL';
@@ -56,12 +51,10 @@ export const StateMap = (props) => {
 
   const statuses = [
     stateLoadingData,
-    countiesLoadingData,
     wxLoadingData
   ];
   const errors = [
     stateLoadingDataError,
-    countiesLoadingDataError,
     wxLoadingDataError
   ];
 
@@ -87,14 +80,13 @@ export const StateMap = (props) => {
     );
   } else {
     // Map projection.
-    // Alabama's geographic center: [ 32*50'5'', 86*38'50'']
     // Albers projection, like national map.
     // const projection = d3.geoAlbers()
     //   .parallels([30, 35])
     // Spherical Mercator, like NWS radar and rest of web.
     const projection = d3.geoMercator()
-          .center([0, (32 + (50/60) + (5/3600))])
-          .rotate([(86 + (38/60) + (50/3600)), 0])
+          .center([0, geoCenter.latitude])
+          .rotate([-geoCenter.longitude, 0])
           .fitSize([dms.boundedWidth, dms.boundedHeight], stateData.features[0]);
 
     // Path generator.
@@ -116,6 +108,7 @@ export const StateMap = (props) => {
           <defs>
             <clipPath
               id="stateImageClipPath"
+              key="stateImageClipPath"
             >
               {stateData.features.map((feat) => {
                 return (
@@ -130,6 +123,7 @@ export const StateMap = (props) => {
             </clipPath>
             <clipPath
               id="statePathClipPath"
+              key="statePathClipPath"
             >
               {stateData.features.map((feat) => {
                 return (
@@ -142,7 +136,10 @@ export const StateMap = (props) => {
               })}
             </clipPath>
           </defs>
-          <g>
+          <g
+            id="statePath"
+            key="statePath"
+          >
             {stateData.features.map((feat) => {
               return (
                 <path
@@ -160,24 +157,16 @@ export const StateMap = (props) => {
               );
             })}
           </g>
-          <g>
-            {countiesData.features.map((feat) => {
-              return (
-                <path
-                  className="county"
-                  key={feat.properties.geoid}
-                  stroke="#000000"
-                  strokeLinejoin="round"
-                  d={path(feat)}
-                  transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
-                  style={{
-                    'fill': '#b20021'
-                  }}
-                >
-                </path>
-              );
-            })}
-          </g>
+          <Counties
+            showCounties={props.showCounties}
+            dms={dms}
+            pathFunction={path}
+            stroke="#000000"
+            strokeLinejoin="round"
+            colorFunction={() => {
+              return '#b20021';
+            }}
+          />
           <MakePathGroup
             features={wxData.features}
             pathClassName="wxAlert"
