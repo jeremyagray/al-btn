@@ -4,11 +4,23 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
+// React.
+import React from 'react';
+
 import useFetchData from './useFetchData';
 
 const colorsUrl = 'http://192.168.1.67:3002/api/v1/weather/nws/alert/colors/all';
 
 export const WeatherAlerts = (props) => {
+  let wxDataUrl = '';
+  if (props.showWeatherAlerts) {
+    wxDataUrl = 'https://api.weather.gov/alerts/active/area/AL';
+  }
+
+  const [
+    wxData
+  ] = useFetchData(wxDataUrl, {'features': []});
+
   const [
     colorsData,
   ] = useFetchData(colorsUrl);
@@ -25,51 +37,68 @@ export const WeatherAlerts = (props) => {
     return '#0000ff';
   }
 
-  if (props.clipToState) {
+  if (props.showWeatherAlerts && wxData.features) {
+    if (props.clipToState) {
+      return (
+        <React.Fragment
+          key="weather-alerts-fragment"
+        >
+          <g>
+            {wxData.features.map((alert) => {
+              return (
+                <path
+                  className={props.pathClassName}
+                  key={props.getId(alert)}
+                  stroke={props.strokeColor}
+                  strokeLinejoin={props.strokeLinejoin}
+                  d={props.pathFunction(alert)}
+                  transform={`translate(${props.marginLeft}, ${props.marginTop})`}
+                  style={{
+                    'fill': getFillColor(alert),
+                    'opacity': props.alertOpacity
+                  }}
+                  clipPath={`url(#${props.clipPath})`}
+                >
+                </path>
+              );
+            })}
+          </g>
+        </React.Fragment>
+      );
+    }
+
     return (
-      <g>
-        {props.features.map((feat) => {
-          return (
-            <path
-              className={props.pathClassName}
-              key={props.getId(feat)}
-              stroke={props.strokeColor}
-              strokeLinejoin={props.strokeLinejoin}
-              d={props.pathFunction(feat)}
-              transform={`translate(${props.marginLeft}, ${props.marginTop})`}
-              style={{
-                'fill': getFillColor(feat),
-                'opacity': props.alertOpacity
-              }}
-              clipPath={`url(#${props.clipPath})`}
-            >
-            </path>
-          );
-        })}
-      </g>
+      <React.Fragment
+        key="weather-alerts-fragment"
+      >
+        <g>
+          {wxData.features.map((alert) => {
+            return (
+              <path
+                className={props.pathClassName}
+                key={props.getId(alert)}
+                stroke={props.strokeColor}
+                strokeLinejoin={props.strokeLinejoin}
+                d={props.pathFunction(alert)}
+                transform={`translate(${props.marginLeft}, ${props.marginTop})`}
+                style={{
+                  'fill': getFillColor(alert),
+                  'opacity': props.alertOpacity
+                }}
+              >
+              </path>
+            );
+          })}
+        </g>
+      </React.Fragment>
     );
   }
 
   return (
-    <g>
-      {props.features.map((feat) => {
-        return (
-          <path
-            className={props.pathClassName}
-            key={props.getId(feat)}
-            stroke={props.strokeColor}
-            strokeLinejoin={props.strokeLinejoin}
-            d={props.pathFunction(feat)}
-            transform={`translate(${props.marginLeft}, ${props.marginTop})`}
-            style={{
-              'fill': getFillColor(feat),
-              'opacity': props.alertOpacity
-            }}
-          >
-          </path>
-        );
-      })}
-    </g>
+    <React.Fragment
+      key="weather-alerts-fragment"
+    >
+    </React.Fragment>
   );
 }
 

@@ -12,7 +12,7 @@ import useChartDimensions from './useChartDimensions';
 import useFetchData from './useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
-import MakePathGroup from './MakePathGroup';
+import WeatherAlerts from './WeatherAlerts';
 import Radar from './Radar';
 import Counties from './Counties';
 
@@ -37,25 +37,11 @@ export const StateMap = (props) => {
     stateLoadingDataError
   ] = useFetchData('http://192.168.1.67:3002/api/v1/geography/states/usps/al');
 
-
-  let wxDataUrl;
-  if (props.showWeatherAlerts) {
-    wxDataUrl = 'https://api.weather.gov/alerts/active/area/AL';
-  }
-
-  const [
-    wxData,
-    wxLoadingData,
-    wxLoadingDataError
-  ] = useFetchData(wxDataUrl, {'features': []});
-
   const statuses = [
-    stateLoadingData,
-    wxLoadingData
+    stateLoadingData
   ];
   const errors = [
-    stateLoadingDataError,
-    wxLoadingDataError
+    stateLoadingDataError
   ];
 
   if (statuses.some(Boolean)) {
@@ -167,8 +153,7 @@ export const StateMap = (props) => {
               return '#b20021';
             }}
           />
-          <MakePathGroup
-            features={wxData.features}
+          <WeatherAlerts
             pathClassName="wxAlert"
             strokeColor="#0000ff"
             strokeLinejoin="round"
@@ -181,6 +166,7 @@ export const StateMap = (props) => {
             alertOpacity={props.alertOpacity}
             clipToState={props.clipToState}
             clipPath="statePathClipPath"
+            showWeatherAlters={props.showWeatherAlerts}
           />
           <Radar
             dms={dms}
