@@ -17,10 +17,9 @@ import Radar from './Radar';
 import Counties from './Counties';
 import States from './States';
 
-
-
 export const StateMap = (props) => {
   // Alabama's geographic center: [ 32*50'5'', 86*38'50'']
+  // Get centroid from API.
   const geoCenter = {
     'latitude': 32 + (50/60) + (5/3600),
     'longitude': -(86 + (38/60) + (50/3600))
@@ -67,11 +66,7 @@ export const StateMap = (props) => {
       </div>
     );
   } else {
-    // Map projection.
-    // Albers projection, like national map.
-    // const projection = d3.geoAlbers()
-    //   .parallels([30, 35])
-    // Spherical Mercator, like NWS radar and rest of web.
+    // Spherical Mercator projection, like NWS radar and rest of web.
     const projection = d3.geoMercator()
           .center([0, geoCenter.latitude])
           .rotate([-geoCenter.longitude, 0])
@@ -128,6 +123,7 @@ export const StateMap = (props) => {
             currentState="AL"
             showSurroundingStates={props.showSurroundingStates}
             dms={dms}
+            projection={projection}
             pathFunction={path}
             stroke="#000000"
             strokeLinejoin="round"
