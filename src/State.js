@@ -15,6 +15,8 @@ import LoadingError from './LoadingError';
 import WeatherAlerts from './WeatherAlerts';
 import Radar from './Radar';
 import Counties from './Counties';
+import States from './States';
+
 
 
 export const StateMap = (props) => {
@@ -122,27 +124,17 @@ export const StateMap = (props) => {
               })}
             </clipPath>
           </defs>
-          <g
-            id="statePath"
-            key="statePath"
-          >
-            {stateData.features.map((feat) => {
-              return (
-                <path
-                  className="state"
-                  key={feat.properties.geoid}
-                  stroke="#000000"
-                  strokeLinejoin="round"
-                  d={path(feat)}
-                  transform={`translate(${dms.marginLeft}, ${dms.marginTop})`}
-                  style={{
-                    'fill': '#b20021'
-                  }}
-                >
-                </path>
-              );
-            })}
-          </g>
+          <States
+            currentState="AL"
+            showSurroundingStates={props.showSurroundingStates}
+            dms={dms}
+            pathFunction={path}
+            stroke="#000000"
+            strokeLinejoin="round"
+            colorFunction={() => {
+              return '#b20021';
+            }}
+          />
           <Counties
             showCounties={props.showCounties}
             dms={dms}

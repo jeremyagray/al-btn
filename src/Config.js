@@ -59,6 +59,13 @@ const Config = (props) => {
         />
         <Form.Check
           type="checkbox"
+          checked={props.showSurroundingStates}
+          onChange={props.toggleShowSurroundingStates}
+          label="show surrounding states"
+          id="showSurroundingStates"
+        />
+        <Form.Check
+          type="checkbox"
           checked={props.showCounties}
           onChange={props.toggleShowCounties}
           label="show counties"

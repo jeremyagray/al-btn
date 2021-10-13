@@ -24,6 +24,12 @@ function Body() {
   }
 
   // State map state.
+  const [showSurroundingStates, setShowSurroundingStates] = useState(false);
+
+  const toggleShowSurroundingStates = () => {
+    setShowSurroundingStates(!showSurroundingStates);
+  }
+
   const [showCounties, setShowCounties] = useState(false);
 
   const toggleShowCounties = () => {
@@ -72,6 +78,7 @@ function Body() {
           visualization={visualization}
           projection={projection}
           clipToState={clipToState}
+          showSurroundingStates={showSurroundingStates}
           showCounties={showCounties}
           showStates={showStates}
           showWeatherAlerts={showWeatherAlerts}
@@ -86,6 +93,8 @@ function Body() {
           setProjection={setProjection}
           clipToState={clipToState}
           toggleClipToState={toggleClipToState}
+          showSurroundingStates={showSurroundingStates}
+          toggleShowSurroundingStates={toggleShowSurroundingStates}
           showCounties={showCounties}
           toggleShowCounties={toggleShowCounties}
           showStates={showStates}
