@@ -94,7 +94,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "cover": "react-scripts test --coverage",
+    "cover": "react-scripts test --coverage --watchAll",
     "lint": "eslint 'src/*.js'",
     "lint-fix": "eslint 'src/*.js' --fix",
     "start": "BROWSER=none PORT=3001 react-scripts start",
