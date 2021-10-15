@@ -4,21 +4,29 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
-export const LoadingError = (props) => {
-  return (
-    <div>
-      {props.errors.map((error) => {
-        if (error) {
-          return (
-            <p>
-              Error loading data:  {error.message}
-            </p>
-          );
-        }
+// React.
+import React from 'react';
 
-        return (<></>);
-      })}
-    </div>
+export const LoadingError = (props) => {
+  if (props.errors) {
+    return (
+      <React.Fragment>
+        {props.errors.map((error) => {
+          if (error) {
+            return (
+              <p className="loadingError">
+                Error loading data:  {error.message}
+              </p>
+            );
+          }
+        })}
+      </React.Fragment>
+    );
+  }
+
+  return (
+    <React.Fragment>
+    </React.Fragment>
   );
 }
 
