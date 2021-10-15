@@ -16,17 +16,14 @@ function Selector(props) {
     >
       <SelectorDropDown
         visualization={props.visualization}
-        setVisualization={props.setVisualization}
+        visualizations={props.visualizations}
+        updateVisualization={props.updateVisualization}
       />
     </div>
   );
 }
 
 function SelectorDropDown(props) {
-  function changer(e) {
-    props.setVisualization(e.target.value);
-  }
-  
   return (
     <div id='SelectorDropDown'>
       <Form.Group>
@@ -38,11 +35,14 @@ function SelectorDropDown(props) {
         <Form.Control
           as="select"
           id="SelectorSelectVisualization"
-          onChange={changer}
-          value={props.projection}
+          onChange={props.updateVisualization}
+          value={props.visualization}
         >
-          <option value="national">national maps</option>
-          <option value="states">state maps</option>
+          {props.visualizations.map((viz) => {
+            return (
+              <option value={viz.value} key={viz.key}>{viz.title}</option>
+            );
+          })}
         </Form.Control>
       </Form.Group>
     </div>

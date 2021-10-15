@@ -13,7 +13,8 @@ function Controls(props) {
     <div className="AppControls col-md-4 m-0 p-0">
       <Selector
         visualization={props.visualization}
-        setVisualization={props.setVisualization}
+        visualizations={props.visualizations}
+        updateVisualization={props.updateVisualization}
       />
       <Config
         visualization={props.visualization}

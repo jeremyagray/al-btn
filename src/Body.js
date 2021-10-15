@@ -13,7 +13,25 @@ import Visualization from './Visualization.js';
 import Controls from './Controls.js';
 
 function Body() {
+  // Visualization selection.
   const [visualization, setVisualization] = useState('national');
+  const visualizations = [
+    {
+      'value': 'national',
+      'key': 'national',
+      'title': 'national map',
+    },
+    {
+      'value': 'states',
+      'key': 'states',
+      'title': 'state map',
+    }
+  ];
+
+  const updateVisualization = (event) => {
+    setVisualization(event.target.value);
+  }
+
   const [projection, setProjection] = useState('nation50');
 
   // National map state.
@@ -88,7 +106,8 @@ function Body() {
         />
         <Controls
           visualization={visualization}
-          setVisualization={setVisualization}
+          visualizations={visualizations}
+          updateVisualization={updateVisualization}
           projection={projection}
           setProjection={setProjection}
           clipToState={clipToState}
