@@ -8,24 +8,22 @@
 import React from 'react';
 
 export const LoadingError = (props) => {
-  if (props.errors) {
+  if (props.errors.length) {
     return (
-      <React.Fragment>
+      <React.Fragment key="loadingErrors">
         {props.errors.map((error) => {
-          if (error) {
-            return (
-              <p className="loadingError">
-                Error loading data:  {error.message}
-              </p>
-            );
-          }
+          return (
+            <p className="loadingError" key={error.name}>
+              Error loading data:  {error.message}
+            </p>
+          );
         })}
       </React.Fragment>
     );
   }
 
   return (
-    <React.Fragment>
+    <React.Fragment key="noError">
     </React.Fragment>
   );
 }
