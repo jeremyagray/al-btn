@@ -4,6 +4,9 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
+// React.
+import React from 'react';
+
 import useFetchData from './useFetchData';
 
 import './RadarLegend.css';
@@ -40,7 +43,7 @@ const RadarLegend = (props) => {
   }
 
   return (
-    <></>
+    <React.Fragment />
   );
 }
 
