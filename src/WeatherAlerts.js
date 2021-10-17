@@ -8,6 +8,7 @@
 import React from 'react';
 
 import useFetchData from './useFetchData';
+import useRefetchData from './useRefetchData';
 
 const colorsUrl = 'http://192.168.1.67:3002/api/v1/weather/nws/alert/colors/all';
 
@@ -19,7 +20,7 @@ export const WeatherAlerts = (props) => {
 
   const [
     wxData
-  ] = useFetchData(wxDataUrl, {'features': []});
+  ] = useRefetchData(wxDataUrl, 300000, {'features': []});
 
   const [
     colorsData,
