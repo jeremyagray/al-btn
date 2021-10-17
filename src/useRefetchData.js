@@ -20,7 +20,6 @@ export const useRefetchData = (url, interval, dataDefault = null, config = {}) =
   const [loadingDataError, setLoadingDataError] = useState(null);
 
   useEffect(() => {
-    // let timer;
     let isMounted = true;
     setLoadingData(true);
 
@@ -47,7 +46,7 @@ export const useRefetchData = (url, interval, dataDefault = null, config = {}) =
     }
 
     fetchData();
-    const id = setInterval(fetchData, 120000);
+    const id = setInterval(fetchData, interval);
 
     return () => {
       isMounted = false;
