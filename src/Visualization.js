@@ -15,6 +15,7 @@ function Visualization(props) {
         <NationMap
           projection={props.projection}
           showStates={props.showStates}
+          showRadarStations={props.showRadarStations}
         />
       </div>
     );

@@ -13,6 +13,7 @@ import useChartDimensions from './useChartDimensions';
 import useFetchData from './useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
+import RadarStations from './RadarStations';
 
 export const NationMap = (props) => {
   const [ref, dms] = useChartDimensions({
@@ -134,6 +135,11 @@ export const NationMap = (props) => {
               );
             })}
           </g>
+          <RadarStations
+            showRadarStations={props.showRadarStations}
+            projection={projection}
+            dms={dms}
+          />
         </svg>
       </div>
     );
