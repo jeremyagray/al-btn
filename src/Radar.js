@@ -5,8 +5,45 @@
  */
 
 import useRefetchData from './useRefetchData';
+import useFetchWmsCapabilities from './useFetchWmsCapabilities';
 
 import './Radar.css';
+
+const parseCapabilitiesToProductTimes = (xmlString, args = {'product': 'kbmx_bref_raw'}) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlString, 'text/xml');
+  const layers = doc.getElementsByTagName("Layer");
+
+  let times = [];
+
+  for (let i = 0; i < layers.length; i++) {
+    if (layers.item(i).getElementsByTagName("Name").item(0).textContent === `${args.product}`) {
+      times = layers.item(i).getElementsByTagName("Dimension").item(0).textContent.split(',');
+      break;
+    }
+  }
+
+  return times;
+}
+
+const parseCapabilitiesToProducts = (xmlString, args = {}) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlString, 'text/xml');
+  const layers = doc.getElementsByTagName("Layer");
+
+  let products = [];
+
+  for (let i = 0; i < layers.length; i++) {
+    products.push(
+      layers
+        .item(i)
+        .getElementsByTagName("Name")
+        .item(0)
+        .textContent);
+  }
+
+  return products;
+}
 
 const Radar = (props) => {
   let radarDataUrl = '';
@@ -19,8 +56,18 @@ const Radar = (props) => {
   }
 
   const [
-    radarData,
-  ] = useRefetchData(radarDataUrl, 120000, null, {'responseType': 'blob'});
+    radarData
+  ] = useRefetchData(radarDataUrl, 240000, null, {'responseType': 'blob'});
+
+  const {
+    'data': siteProducts,
+    'loadingError': productsLoadingError
+  } = useFetchWmsCapabilities('kbmx', parseCapabilitiesToProducts, {});
+
+  const {
+    'data': siteTimes,
+    'loadingError': timesLoadingError
+  } = useFetchWmsCapabilities('kbmx', parseCapabilitiesToProductTimes, {'product': 'kbmx_bref_raw'});
 
   if (props.showRadar && radarData) {
     if (props.clipToState) {
