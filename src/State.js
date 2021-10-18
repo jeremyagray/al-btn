@@ -14,6 +14,7 @@ import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 import WeatherAlerts from './WeatherAlerts';
 import Radar from './Radar';
+import RadarStations from './RadarStations';
 import Counties from './Counties';
 import States from './States';
 
@@ -140,6 +141,11 @@ export const StateMap = (props) => {
             colorFunction={() => {
               return '#b20021';
             }}
+          />
+          <RadarStations
+            showRadarStations={props.showRadarStations}
+            projection={projection}
+            dms={dms}
           />
           <WeatherAlerts
             pathClassName="wxAlert"

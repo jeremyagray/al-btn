@@ -27,6 +27,7 @@ function Visualization(props) {
           showCounties={props.showCounties}
           showWeatherAlerts={props.showWeatherAlerts}
           showRadar={props.showRadar}
+          showRadarStations={props.showRadarStations}
           radarOpacity={props.radarOpacity}
           alertOpacity={props.alertOpacity}
         />

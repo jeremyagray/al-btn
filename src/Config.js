@@ -78,6 +78,13 @@ const Config = (props) => {
           label="show radar"
           id="showRadar"
         />
+        <Form.Check
+          type="checkbox"
+          checked={props.showRadarStations}
+          onChange={props.toggleShowRadarStations}
+          label="show radar stations"
+          id="showRadarStations"
+        />
         <Form.Group>
           <Form.Label
             htmlFor="radarOpacity"
