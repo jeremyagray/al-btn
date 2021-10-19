@@ -87,6 +87,25 @@ const Config = (props) => {
           label="show radar"
           id="showRadar"
         />
+      <Form.Group>
+        <Form.Label
+          htmlFor="SelectRadarStation"
+        >
+          Select Radar Station
+        </Form.Label>
+        <Form.Control
+          as="select"
+          id="SelectRadarStation"
+          onChange={props.updateRadarStation}
+          value={props.radarStation}
+        >
+          {props.visibleRadarStations.map((station) => {
+            return (
+              <option value={station.value} key={station.key}>{station.name}</option>
+            );
+          })}
+        </Form.Control>
+      </Form.Group>
         <Form.Check
           type="checkbox"
           checked={props.showRadarStations}
