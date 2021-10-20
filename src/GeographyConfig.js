@@ -10,12 +10,18 @@ import React from 'react';
 // React Bootstrap.
 import Form from 'react-bootstrap/Form';
 
+import StateSelect from './StateSelect';
+
 import './GeographyConfig.css';
 
 const GeographyConfig = (props) => {
     return (
       <React.Fragment
       >
+        <StateSelect
+          currentState={props.currentState}
+          updateCurrentState={props.updateCurrentState}
+        />
         <Form.Check
           type="checkbox"
           checked={props.clipToState}

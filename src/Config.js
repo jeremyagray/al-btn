@@ -62,6 +62,8 @@ const Config = (props) => {
     return (
       <div className="AppConfig">
         <GeographyConfig
+          currentState={props.currentState}
+          updateCurrentState={props.updateCurrentState}
           clipToState={props.clipToState}
           toggleClipToState={props.toggleClipToState}
           showSurroundingStates={props.showSurroundingStates}

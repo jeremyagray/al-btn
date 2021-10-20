@@ -20,6 +20,8 @@ function Controls(props) {
         visualization={props.visualization}
         projection={props.projection}
         setProjection={props.setProjection}
+        currentState={props.currentState}
+        updateCurrentState={props.updateCurrentState}
         clipToState={props.clipToState}
         toggleClipToState={props.toggleClipToState}
         showSurroundingStates={props.showSurroundingStates}

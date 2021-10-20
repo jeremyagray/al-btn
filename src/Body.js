@@ -41,6 +41,13 @@ function Body() {
     setShowStates(!showStates);
   }
 
+  // Selected state state.
+  const [currentState, setCurrentState] = useState('');
+
+  const updateCurrentState = (event) => {
+    setCurrentState(event.target.value);
+  }
+
   // State map state.
   const [showSurroundingStates, setShowSurroundingStates] = useState(false);
 
@@ -163,6 +170,8 @@ function Body() {
           updateVisualization={updateVisualization}
           projection={projection}
           setProjection={setProjection}
+          currentState={currentState}
+          updateCurrentState={updateCurrentState}
           clipToState={clipToState}
           toggleClipToState={toggleClipToState}
           showSurroundingStates={showSurroundingStates}
