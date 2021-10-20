@@ -7,6 +7,7 @@
 // React Bootstrap.
 import Form from 'react-bootstrap/Form';
 
+import AlertConfig from './AlertConfig';
 import RadarConfig from './RadarConfig';
 
 import './Config.css';
@@ -104,23 +105,11 @@ const Config = (props) => {
           label="show weather alerts"
           id="showWeatherAlerts"
         />
-        <Form.Group>
-          <Form.Label
-            htmlFor="alertOpacity"
-          >
-            Alert Opacity
-          </Form.Label>
-          <input
-            type="range"
-            className="form-range"
-            id="alertOpacity"
-            min="0.00"
-            max="1.00"
-            step="0.01"
-            value={props.alertOpacity}
-            onChange={props.updateAlertOpacity}
-          />
-        </Form.Group>
+        <AlertConfig
+          showWeatherAlerts={props.showWeatherAlerts}
+          alertOpacity={props.alertOpacity}
+          updateAlertOpacity={props.updateAlertOpacity}
+        />
       </div>
     );
   }
