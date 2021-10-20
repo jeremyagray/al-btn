@@ -19,13 +19,6 @@ import Counties from './Counties';
 import States from './States';
 
 export const StateMap = (props) => {
-  // Alabama's geographic center: [ 32*50'5'', 86*38'50'']
-  // Get centroid from API.
-  const geoCenter = {
-    'latitude': 32 + (50/60) + (5/3600),
-    'longitude': -(86 + (38/60) + (50/3600))
-  };
-
   const [ref, dms] = useChartDimensions({
     'marginTop': 30,
     'marginRight': 30,
@@ -37,7 +30,7 @@ export const StateMap = (props) => {
     stateData,
     stateLoadingData,
     stateLoadingDataError
-  ] = useFetchData('http://192.168.1.67:3002/api/v1/geography/states/usps/al');
+  ] = useFetchData(`http://192.168.1.67:3002/api/v1/geography/states/usps/${props.currentState.toLowerCase()}`);
 
   const statuses = [
     stateLoadingData
@@ -69,8 +62,8 @@ export const StateMap = (props) => {
   } else {
     // Spherical Mercator projection, like NWS radar and rest of web.
     const projection = d3.geoMercator()
-          .center([0, geoCenter.latitude])
-          .rotate([-geoCenter.longitude, 0])
+          .center([0, stateData.features[0].properties.centroid.coordinates[1]])
+          .rotate([-stateData.features[0].properties.centroid.coordinates[0], 0])
           .fitSize([dms.boundedWidth, dms.boundedHeight], stateData.features[0]);
 
     // Path generator.
@@ -121,7 +114,7 @@ export const StateMap = (props) => {
             </clipPath>
           </defs>
           <States
-            currentState="AL"
+            currentState={props.currentState}
             showSurroundingStates={props.showSurroundingStates}
             dms={dms}
             projection={projection}

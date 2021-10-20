@@ -42,7 +42,7 @@ function Body() {
   }
 
   // Selected state state.
-  const [currentState, setCurrentState] = useState('');
+  const [currentState, setCurrentState] = useState('AL');
 
   const updateCurrentState = (event) => {
     setCurrentState(event.target.value);
@@ -154,6 +154,7 @@ function Body() {
         <Visualization
           visualization={visualization}
           projection={projection}
+          currentState={currentState}
           clipToState={clipToState}
           showSurroundingStates={showSurroundingStates}
           showCounties={showCounties}

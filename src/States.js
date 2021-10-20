@@ -31,7 +31,7 @@ const States = (props) => {
     centroid
   ] = useFetchData(`http://192.168.1.67:3002/api/v1/geography/states/centroid/usps/${props.currentState.toLowerCase()}`);
 
-  if (props.showSurroundingStates) {
+  if (props.showSurroundingStates && centroid) {
     // Update radius to fit dimensions.
     const corner = props.projection.invert([-props.dms.marginLeft, -props.dms.marginTop]);
     const radius = Math.ceil(distance(centroid.coordinates[1], centroid.coordinates[0], corner[1], corner[0]) * 1000);

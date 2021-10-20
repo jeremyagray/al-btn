@@ -23,6 +23,7 @@ function Visualization(props) {
     return (
       <div className="AppVisualization col-md-8 m-0 p-0">
         <StateMap
+          currentState={props.currentState}
           clipToState={props.clipToState}
           showSurroundingStates={props.showSurroundingStates}
           showCounties={props.showCounties}
