@@ -19,7 +19,7 @@ function Visualization(props) {
         />
       </div>
     );
-  } else if (props.visualization === 'states') {
+  } else if (props.visualization === 'weather') {
     return (
       <div className="AppVisualization col-md-8 m-0 p-0">
         <StateMap
