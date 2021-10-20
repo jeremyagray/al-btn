@@ -29,7 +29,7 @@ const RadarStationSelect = (props) => {
             onChange={props.updateRadarStation}
             value={props.radarStation}
           >
-            {props.stations.map((station) => {
+            {props.radarStations.map((station) => {
               return (
                 <option value={station.value} key={station.key}>{station.name}</option>
               );

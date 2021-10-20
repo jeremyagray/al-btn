@@ -89,8 +89,8 @@ function Body() {
     setRadarStation(event.target.value);
   }
 
-  // Visible radar stations state.
-  const [visibleRadarStations, setVisibleRadarStations] = useState([
+  // Radar stations state.
+  const [radarStations, setRadarStations] = useState([
     {
       'value': 'kbmx',
       'key': 'kbmx',
@@ -123,8 +123,8 @@ function Body() {
     }
   ]);
 
-  const updateVisibleRadarStations = (stations) => {
-    setVisibleRadarStations(stations);
+  const updateRadarStations = (stations) => {
+    setRadarStations(stations);
   }
 
   // Radar station state.
@@ -174,10 +174,10 @@ function Body() {
           showWeatherAlerts={showWeatherAlerts}
           toggleShowWeatherAlerts={toggleShowWeatherAlerts}
           showRadar={showRadar}
+          toggleShowRadar={toggleShowRadar}
           radarStation={radarStation}
           updateRadarStation={updateRadarStation}
-          visibleRadarStations={visibleRadarStations}
-          toggleShowRadar={toggleShowRadar}
+          radarStations={radarStations}
           showRadarStations={showRadarStations}
           toggleShowRadarStations={toggleShowRadarStations}
           radarOpacity={radarOpacity}

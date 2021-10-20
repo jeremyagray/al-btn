@@ -34,7 +34,7 @@ function Controls(props) {
         toggleShowRadar={props.toggleShowRadar}
         radarStation={props.radarStation}
         updateRadarStation={props.updateRadarStation}
-        visibleRadarStations={props.visibleRadarStations}
+        radarStations={props.radarStations}
         showRadarStations={props.showRadarStations}
         toggleShowRadarStations={props.toggleShowRadarStations}
         radarOpacity={props.radarOpacity}

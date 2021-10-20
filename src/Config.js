@@ -7,8 +7,7 @@
 // React Bootstrap.
 import Form from 'react-bootstrap/Form';
 
-import RadarLegend from './RadarLegend';
-import RadarStationSelect from './RadarStationSelect';
+import RadarConfig from './RadarConfig';
 
 import './Config.css';
 
@@ -88,38 +87,15 @@ const Config = (props) => {
           label="show radar"
           id="showRadar"
         />
-        <RadarStationSelect
+        <RadarConfig
           showRadar={props.showRadar}
-          updateRadarStation={props.updateRadarStation}
           radarStation={props.radarStation}
-          stations={props.visibleRadarStations}
-        />
-        <Form.Check
-          type="checkbox"
-          checked={props.showRadarStations}
-          onChange={props.toggleShowRadarStations}
-          label="show radar stations"
-          id="showRadarStations"
-        />
-        <Form.Group>
-          <Form.Label
-            htmlFor="radarOpacity"
-          >
-            Radar Opacity
-          </Form.Label>
-          <input
-            type="range"
-            className="form-range"
-            id="radarOpacity"
-            min="0.00"
-            max="1.00"
-            step="0.01"
-            value={props.radarOpacity}
-            onChange={props.updateRadarOpacity}
-          />
-        </Form.Group>
-        <RadarLegend
-          showRadar={props.showRadar}
+          updateRadarStation={props.updateRadarStation}
+          radarStations={props.radarStations}
+          showRadarStations={props.showRadarStations}
+          toggleShowRadarStations={props.toggleShowRadarStations}
+          radarOpacity={props.radarOpacity}
+          updateRadarOpacity={props.updateRadarOpacity}
         />
         <Form.Check
           type="checkbox"
