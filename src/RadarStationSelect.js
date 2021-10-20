@@ -10,10 +10,19 @@ import React from 'react';
 // React Bootstrap.
 import Form from 'react-bootstrap/Form';
 
+import useFetchData from './useFetchData';
+
 import './RadarStationSelect.css';
 
 const RadarStationSelect = (props) => {
-  if (props.showRadar) {
+  const url = 'http://192.168.1.67:3002/api/v1/weather/nws/radars/all';
+  const [
+    stations,
+    loading,
+    error
+  ] = useFetchData(url);
+
+  if (props.showRadar && ! loading && ! error) {
     return (
       <React.Fragment
       >
@@ -29,9 +38,9 @@ const RadarStationSelect = (props) => {
             onChange={props.updateRadarStation}
             value={props.radarStation}
           >
-            {props.radarStations.map((station) => {
+            {stations.map((station) => {
               return (
-                <option value={station.value} key={station.key}>{station.name}</option>
+                <option value={station.properties.station} key={station.properties.station}>{station.properties.station}</option>
               );
             })}
           </Form.Control>

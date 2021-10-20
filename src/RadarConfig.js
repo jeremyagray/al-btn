@@ -24,7 +24,6 @@ const RadarConfig = (props) => {
           showRadar={props.showRadar}
           updateRadarStation={props.updateRadarStation}
           radarStation={props.radarStation}
-          radarStations={props.radarStations}
         />
         <Form.Check
           type="checkbox"
