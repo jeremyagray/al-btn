@@ -127,6 +127,7 @@ export const StateMap = (props) => {
           />
           <Counties
             showCounties={props.showCounties}
+            currentState={props.currentState}
             dms={dms}
             pathFunction={path}
             stroke="#000000"
