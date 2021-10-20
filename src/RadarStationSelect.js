@@ -15,7 +15,13 @@ import useFetchData from './useFetchData';
 import './RadarStationSelect.css';
 
 const RadarStationSelect = (props) => {
-  const url = 'http://192.168.1.67:3002/api/v1/weather/nws/radars/all';
+  let url = '';
+  if (props.showSurroundingStates) {
+    url = 'http://192.168.1.67:3002/api/v1/weather/nws/radars/all';
+  } else {
+    url = `http://192.168.1.67:3002/api/v1/weather/nws/radars/state/${props.currentState}`;
+  }
+
   const [
     stations,
     loading,

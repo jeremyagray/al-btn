@@ -21,6 +21,8 @@ const RadarConfig = (props) => {
       <React.Fragment
       >
         <RadarStationSelect
+          currentState={props.currentState}
+          showSurroundingStates={props.showSurroundingStates}
           showRadar={props.showRadar}
           updateRadarStation={props.updateRadarStation}
           radarStation={props.radarStation}

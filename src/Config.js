@@ -79,6 +79,8 @@ const Config = (props) => {
           id="showRadar"
         />
         <RadarConfig
+          currentState={props.currentState}
+          showSurroundingStates={props.showSurroundingStates}
           showRadar={props.showRadar}
           radarStation={props.radarStation}
           updateRadarStation={props.updateRadarStation}
