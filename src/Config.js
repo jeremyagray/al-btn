@@ -8,6 +8,7 @@
 import Form from 'react-bootstrap/Form';
 
 import AlertConfig from './AlertConfig';
+import GeographyConfig from './GeographyConfig';
 import RadarConfig from './RadarConfig';
 
 import './Config.css';
@@ -60,26 +61,13 @@ const Config = (props) => {
   } else {
     return (
       <div className="AppConfig">
-        <Form.Check
-          type="checkbox"
-          checked={props.clipToState}
-          onChange={props.toggleClipToState}
-          label="clip to state"
-          id="clipToState"
-        />
-        <Form.Check
-          type="checkbox"
-          checked={props.showSurroundingStates}
-          onChange={props.toggleShowSurroundingStates}
-          label="show surrounding states"
-          id="showSurroundingStates"
-        />
-        <Form.Check
-          type="checkbox"
-          checked={props.showCounties}
-          onChange={props.toggleShowCounties}
-          label="show counties"
-          id="showCounties"
+        <GeographyConfig
+          clipToState={props.clipToState}
+          toggleClipToState={props.toggleClipToState}
+          showSurroundingStates={props.showSurroundingStates}
+          toggleShowSurroundingStates={props.toggleShowSurroundingStates}
+          showCounties={props.showCounties}
+          toggleShowCounties={props.toggleShowCounties}
         />
         <Form.Check
           type="checkbox"
