@@ -22,9 +22,9 @@ function Body() {
       'title': 'national map',
     },
     {
-      'value': 'states',
-      'key': 'states',
-      'title': 'state map',
+      'value': 'weather',
+      'key': 'weather',
+      'title': 'weather',
     }
   ];
 
