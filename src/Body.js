@@ -124,6 +124,7 @@ function Body() {
           showWeatherAlerts={showWeatherAlerts}
           showRadar={showRadar}
           showRadarStations={showRadarStations}
+          radarStation={radarStation}
           radarOpacity={radarOpacity}
           alertOpacity={alertOpacity}
         />

@@ -161,6 +161,7 @@ export const StateMap = (props) => {
             projection={projection}
             opacity={props.radarOpacity}
             showRadar={props.showRadar}
+            radarStation={props.radarStation}
             clipToState={props.clipToState}
             clipPath="stateImageClipPath"
           />

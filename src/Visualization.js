@@ -30,6 +30,7 @@ function Visualization(props) {
           showWeatherAlerts={props.showWeatherAlerts}
           showRadar={props.showRadar}
           showRadarStations={props.showRadarStations}
+          radarStation={props.radarStation}
           radarOpacity={props.radarOpacity}
           alertOpacity={props.alertOpacity}
         />

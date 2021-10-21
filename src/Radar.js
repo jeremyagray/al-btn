@@ -52,11 +52,14 @@ const Radar = (props) => {
     const [miny, maxx] = props.projection.invert([0, 0]);
     const [maxy, minx] = props.projection.invert([props.dms.boundedWidth, props.dms.boundedHeight]);
 
-    radarDataUrl = `https://opengeo.ncep.noaa.gov/geoserver/kbmx/ows?service=wms&version=1.3.0&request=GetMap&format=image/png&&layers=kbmx_bref_raw&crs=EPSG:4326&transparent=true&width=${Math.floor(props.dms.boundedWidth)}&height=${Math.floor(props.dms.boundedHeight)}&bbox=${minx},${miny},${maxx},${maxy}`;
+    // radarDataUrl = `https://opengeo.ncep.noaa.gov/geoserver/kbmx/ows?service=wms&version=1.3.0&request=GetMap&format=image/png&&layers=kbmx_bref_raw&crs=EPSG:4326&transparent=true&width=${Math.floor(props.dms.boundedWidth)}&height=${Math.floor(props.dms.boundedHeight)}&bbox=${minx},${miny},${maxx},${maxy}`;
+    radarDataUrl = `https://opengeo.ncep.noaa.gov/geoserver/${props.radarStation.toLowerCase()}/ows?service=wms&version=1.3.0&request=GetMap&format=image/png&&layers=${props.radarStation.toLowerCase()}_bref_raw&crs=EPSG:4326&transparent=true&width=${Math.floor(props.dms.boundedWidth)}&height=${Math.floor(props.dms.boundedHeight)}&bbox=${minx},${miny},${maxx},${maxy}`;
   }
 
   const [
-    radarData
+    radarData,
+    radarLoading,
+    radarError
   ] = useRefetchData(radarDataUrl, 240000, null, {'responseType': 'blob'});
 
   const {
@@ -69,7 +72,7 @@ const Radar = (props) => {
     'loadingError': timesLoadingError
   } = useFetchWmsCapabilities('kbmx', parseCapabilitiesToProductTimes, {'product': 'kbmx_bref_raw'});
 
-  if (props.showRadar && radarData) {
+  if (props.showRadar && props.radarStation && ! radarLoading && ! radarError) {
     if (props.clipToState) {
       return (
         <image
