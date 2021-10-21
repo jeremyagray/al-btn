@@ -38,6 +38,7 @@ export const useFetchData = (url, dataDefault = null, config = {}) => {
           setLoadingData(false);
         }
       } catch (error) {
+        /* istanbul ignore else */
         if (isMounted) {
           setLoadingDataError(error);
           setLoadingData(false);
