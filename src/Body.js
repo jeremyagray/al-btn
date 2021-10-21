@@ -34,6 +34,10 @@ function Body() {
 
   const [projection, setProjection] = useState('nation50');
 
+  const updateProjection = (event) => {
+    setProjection(event.target.value);
+  }
+
   // National map state.
   const [showStates, setShowStates] = useState(false);
 
@@ -133,7 +137,7 @@ function Body() {
           visualizations={visualizations}
           updateVisualization={updateVisualization}
           projection={projection}
-          setProjection={setProjection}
+          updateProjection={updateProjection}
           currentState={currentState}
           updateCurrentState={updateCurrentState}
           clipToState={clipToState}

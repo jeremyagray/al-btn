@@ -19,7 +19,7 @@ function Controls(props) {
       <Config
         visualization={props.visualization}
         projection={props.projection}
-        setProjection={props.setProjection}
+        updateProjection={props.updateProjection}
         currentState={props.currentState}
         updateCurrentState={props.updateCurrentState}
         clipToState={props.clipToState}

@@ -14,10 +14,6 @@ import RadarConfig from './RadarConfig';
 import './Config.css';
 
 const Config = (props) => {
-  function changer(e) {
-    props.setProjection(e.target.value);
-  }
-
   if (props.visualization === 'national') {
     return (
       <div className="AppConfig">
@@ -30,7 +26,7 @@ const Config = (props) => {
           <Form.Control
             as="select"
             id="NationSelectProjection"
-            onChange={changer}
+            onChange={props.updateProjection}
             value={props.projection}
           >
             <option value="nation50">Albers 50 States</option>
