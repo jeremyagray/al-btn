@@ -10,7 +10,7 @@
 
 import './Footer.css';
 
-function Footer() {
+function Footer(props) {
   return (
     <div className="AppFooter">
       <p>
