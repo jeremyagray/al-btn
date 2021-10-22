@@ -14,7 +14,7 @@ import Config from './Config.js';
 let props = {
   'visualization': '',
   'projection': '',
-  'setProjection': jest.fn(),
+  'updateProjection': jest.fn(),
   'currentState': 'AL',
   'updateCurrentState': jest.fn(),
   'clipToState': true,
