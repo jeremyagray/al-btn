@@ -39,6 +39,9 @@ let props = {
   'updateAlertOpacity': jest.fn()
 };
 
+const URL = {};
+URL.createObjectURL = jest.fn();
+
 test('renders the national component', async () => {
   props.visualization = 'national';
   render(<Config {...props} />);
