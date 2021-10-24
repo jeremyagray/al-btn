@@ -51,6 +51,11 @@
     ]
   },
   "homepage": "https://github.com/jeremyagray/al-btn",
+  "jest": {
+    "transformIgnorePatterns": [
+    "/node_modules/(?!(d3-?|internmap|delaunator|robust-predicates))"
+  ]
+  },
   "keywords": [
     "d3",
     "node",
