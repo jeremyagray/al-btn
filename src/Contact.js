@@ -13,13 +13,16 @@ import {
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import axios from 'axios';
+
 import './Contact.css';
 
 function Contact() {
   const [ name, setName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ message, setMessage ] = useState('');
-  const [ antispam, setAntispam ] = useState('');
+  const [ antispam, setAntispam ] = useState(false);
+  const [ serverResponse, setServerResponse ] = useState('');
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -34,15 +37,31 @@ function Contact() {
   };
 
   const handleAntispam = (event) => {
-    setAntispam(event.target.value);
+    if (event.target.value) {
+      setAntispam(true);
+    }
   };
 
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    console.log(`Name:  ${name}`);
-    console.log(`Email:  ${email}`);
-    console.log(`Message:  ${message}`);
-    console.log(`Antispam:  ${antispam}`);
+
+    const url = 'http://192.168.1.67:3002/api/v1/contact/message';
+    const messageBody = {
+      'contactName': name,
+      'contactEmail': email,
+      'contactMessage': message,
+      'contactSpam': antispam,
+    };
+
+    const response = await axios.post(url, messageBody);
+
+    if (response.status === 200) {
+      setName('');
+      setEmail('');
+      setMessage('');
+      setAntispam('');
+      setServerResponse(response.data.message);
+    }
   };
 
   return (
@@ -50,6 +69,7 @@ function Contact() {
       <h2>
         Contact
       </h2>
+      {serverResponse && <p>{serverResponse}</p>}
       <p className="text-muted">
         All information entered here will not be sold or used for purposes other than the use of this site.  Thanks!
       </p>
