@@ -11,9 +11,12 @@ import {
 
 import Config from './Config.js';
 
+// Not in jsdom, and hence jest, apparently.  Mock it.
+window.URL.createObjectURL = jest.fn();
+
 let props = {
   'visualization': '',
-  'projection': '',
+  'projection': 'nation50',
   'updateProjection': jest.fn(),
   'currentState': 'AL',
   'updateCurrentState': jest.fn(),
@@ -29,7 +32,7 @@ let props = {
   'toggleShowStates': jest.fn(),
   'showRadar': true,
   'toggleShowRadar': jest.fn(),
-  'radarStation': '',
+  'radarStation': 'KBMX',
   'updateRadarStation': jest.fn(),
   'showRadarStations': true,
   'toggleShowRadarStations': jest.fn(),
@@ -38,9 +41,6 @@ let props = {
   'alertOpacity': '0.50',
   'updateAlertOpacity': jest.fn()
 };
-
-const URL = {};
-URL.createObjectURL = jest.fn();
 
 test('renders the national component', async () => {
   props.visualization = 'national';

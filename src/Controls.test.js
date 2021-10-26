@@ -11,6 +11,9 @@ import {
 
 import Controls from './Controls.js';
 
+// Not in jsdom, and hence jest, apparently.  Mock it.
+window.URL.createObjectURL = jest.fn();
+
 const visualizations = [
   {
     'value': 'national',
@@ -28,7 +31,7 @@ let props = {
   'visualization': '',
   'visualizations': visualizations,
   'updateVisualization': jest.fn(),
-  'projection': '',
+  'projection': 'nation50',
   'updateProjection': jest.fn(),
   'currentState': 'AL',
   'updateCurrentState': jest.fn(),
@@ -44,7 +47,7 @@ let props = {
   'toggleShowStates': jest.fn(),
   'showRadar': true,
   'toggleShowRadar': jest.fn(),
-  'radarStation': '',
+  'radarStation': 'KBMX',
   'updateRadarStation': jest.fn(),
   'showRadarStations': true,
   'toggleShowRadarStations': jest.fn(),
