@@ -56,6 +56,7 @@ function Contact() {
     try {
       const response = await axios.post(url, messageBody);
 
+      /* istanbul ignore else */
       if (response.status === 200) {
         setName('');
         setEmail('');
@@ -64,6 +65,7 @@ function Contact() {
         setServerResponse(response.data.message);
       }
     } catch (error) {
+      /* istanbul ignore else */
       if (error.response.status === 500) {
         setServerResponse(error.response.data.error);
       }
