@@ -53,14 +53,20 @@ function Contact() {
       'contactSpam': antispam,
     };
 
-    const response = await axios.post(url, messageBody);
+    try {
+      const response = await axios.post(url, messageBody);
 
-    if (response.status === 200) {
-      setName('');
-      setEmail('');
-      setMessage('');
-      setAntispam('');
-      setServerResponse(response.data.message);
+      if (response.status === 200) {
+        setName('');
+        setEmail('');
+        setMessage('');
+        setAntispam('');
+        setServerResponse(response.data.message);
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        setServerResponse(error.response.data.error);
+      }
     }
   };
 
@@ -75,6 +81,7 @@ function Contact() {
       </p>
       <Form
         className="p-3"
+        role="form"
         onSubmit={submitForm}
       >
         <Form.Group className="p-3 mb-3" controlId="contactFormName">
