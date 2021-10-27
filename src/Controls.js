@@ -5,16 +5,20 @@
  */
 
 import './Controls.css';
-import Selector from './Selector.js';
-import Config from './Config.js';
+
+import Config from './Config';
+import FormSelect from './FormSelect';
 
 function Controls(props) {
   return (
     <div className="AppControls col-md-4 m-0 p-0">
-      <Selector
-        visualization={props.visualization}
-        visualizations={props.visualizations}
-        updateVisualization={props.updateVisualization}
+      <FormSelect
+        id="VisualizationSelect"
+        classNames={['text-center']}
+        label="Select Visualization"
+        value={props.visualization}
+        items={props.visualizations}
+        onChange={props.updateVisualization}
       />
       <Config
         visualization={props.visualization}
