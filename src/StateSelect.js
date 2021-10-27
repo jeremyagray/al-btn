@@ -10,6 +10,7 @@ import React from 'react';
 // React Bootstrap.
 import Form from 'react-bootstrap/Form';
 
+import FormSelect from './FormSelect';
 import useFetchData from './useFetchData';
 
 import './StateSelect.css';
@@ -24,30 +25,20 @@ const StateSelect = (props) => {
     return (
       <React.Fragment
       >
-        <Form.Group>
-          <Form.Label
-            htmlFor="SelectState"
-          >
-            Select State/Territory
-          </Form.Label>
-          <Form.Control
-            as="select"
-            id="SelectState"
-            onChange={props.updateCurrentState}
-            value={props.currentState}
-          >
-            {states.features.map((state) => {
-              return (
-                <option
-                  value={state.properties.usps}
-                  key={state.properties.geoid}
-                >
-                  {state.properties.name}
-                </option>
-              );
-            })}
-          </Form.Control>
-        </Form.Group>
+        <FormSelect
+          id="StateSelect"
+          classNames={['text-center']}
+          label="Select State/Territory"
+          value={props.currentState}
+          items={states.features.map((state) => {
+            return {
+              'value': state.properties.usps,
+              'key': state.properties.geoid,
+              'label': state.properties.name
+            };
+          })}
+          onChange={props.updateCurrentState}
+        />
       </React.Fragment>
     );
   }
