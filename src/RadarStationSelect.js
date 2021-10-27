@@ -10,6 +10,7 @@ import React from 'react';
 // React Bootstrap.
 import Form from 'react-bootstrap/Form';
 
+import FormSelect from './FormSelect';
 import useFetchData from './useFetchData';
 
 import './RadarStationSelect.css';
@@ -32,26 +33,25 @@ const RadarStationSelect = (props) => {
     return (
       <React.Fragment
       >
-        <Form.Group>
-          <Form.Label
-            htmlFor="SelectRadarStation"
-          >
-            Available Radar Stations
-          </Form.Label>
-          <Form.Control
-            as="select"
-            id="SelectRadarStation"
-            onChange={props.updateRadarStation}
-            value={props.radarStation}
-          >
-            <option value="" key="empty"></option>
-            {stations.map((station) => {
-              return (
-                <option value={station.properties.station} key={station.properties.station}>{station.properties.station}</option>
-              );
-            })}
-          </Form.Control>
-        </Form.Group>
+        <FormSelect
+          id="StateSelect"
+          classNames={['text-center']}
+          label="Available Radar Stations"
+          value={props.radarStation}
+          default={{
+            'value': '',
+            'key': 'default',
+            'label': ''
+          }}
+          items={stations.map((station) => {
+            return {
+              'value': station.properties.station,
+              'key': station.properties.station,
+              'label': station.properties.station
+            };
+          })}
+          onChange={props.updateRadarStation}
+        />
       </React.Fragment>
     );
   }
