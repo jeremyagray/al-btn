@@ -19,12 +19,12 @@ function Body() {
     {
       'value': 'national',
       'key': 'national',
-      'title': 'national map',
+      'label': 'national map',
     },
     {
       'value': 'weather',
       'key': 'weather',
-      'title': 'weather',
+      'label': 'weather',
     }
   ];
 
