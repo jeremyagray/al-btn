@@ -7,9 +7,6 @@
 // React.
 import React from 'react';
 
-// React Bootstrap.
-import Form from 'react-bootstrap/Form';
-
 import FormSelect from './FormSelect';
 import useFetchData from './useFetchData';
 
@@ -18,10 +15,12 @@ import './StateSelect.css';
 const StateSelect = (props) => {
   const statesUrl = 'http://192.168.1.67:3002/api/v1/geography/states/all';
   const [
-    states
+    states,
+    loading,
+    error
   ] = useFetchData(statesUrl);
 
-  if (states && states.features) {
+  if (! loading && ! error) {
     return (
       <React.Fragment
       >

@@ -7,9 +7,6 @@
 // React.
 import React from 'react';
 
-// React Bootstrap.
-import Form from 'react-bootstrap/Form';
-
 import FormSelect from './FormSelect';
 import useFetchData from './useFetchData';
 
