@@ -49,8 +49,8 @@ const Radar = (props) => {
   let radarDataUrl = '';
 
   if (props.showRadar) {
-    const [miny, maxx] = props.projection.invert([0, 0]);
-    const [maxy, minx] = props.projection.invert([props.dms.boundedWidth, props.dms.boundedHeight]);
+    const [miny, maxx] = props.projection.invert([-props.dms.marginLeft, -props.dms.marginTop]);
+    const [maxy, minx] = props.projection.invert([props.dms.width - props.dms.marginLeft, props.dms.height - props.dms.marginTop]);
 
     radarDataUrl = `https://opengeo.ncep.noaa.gov/geoserver/${props.radarStation.toLowerCase()}/ows?service=wms&version=1.3.0&request=GetMap&format=image/png&&layers=${props.radarStation.toLowerCase()}_bref_raw&crs=EPSG:4326&transparent=true&width=${Math.floor(props.dms.boundedWidth)}&height=${Math.floor(props.dms.boundedHeight)}&bbox=${minx},${miny},${maxx},${maxy}`;
   }
@@ -77,10 +77,10 @@ const Radar = (props) => {
         <image
           id="radar"
           href={URL.createObjectURL(radarData)}
-          width={props.dms.boundedWidth}
-          height={props.dms.boundedHeight}
-          x={props.dms.marginLeft}
-          y={props.dms.marginRight}
+          width={props.dms.width}
+          height={props.dms.height}
+          x="0"
+          y="0"
           style={{
             'opacity': props.opacity
           }}
@@ -93,10 +93,10 @@ const Radar = (props) => {
       <image
         id="radar"
         href={URL.createObjectURL(radarData)}
-        width={props.dms.boundedWidth}
-        height={props.dms.boundedHeight}
-        x={props.dms.marginLeft}
-        y={props.dms.marginRight}
+        width={props.dms.width}
+        height={props.dms.height}
+        x="0"
+        y="0"
         style={{
           'opacity': props.opacity
         }}
