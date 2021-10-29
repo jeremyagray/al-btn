@@ -81,6 +81,7 @@ const Radar = (props) => {
           height={props.dms.height}
           x="0"
           y="0"
+          pointerEvents="none"
           style={{
             'opacity': props.opacity
           }}
@@ -97,6 +98,7 @@ const Radar = (props) => {
         height={props.dms.height}
         x="0"
         y="0"
+        pointerEvents="none"
         style={{
           'opacity': props.opacity
         }}
