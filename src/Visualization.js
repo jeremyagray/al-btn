@@ -31,6 +31,7 @@ function Visualization(props) {
           showRadar={props.showRadar}
           showRadarStations={props.showRadarStations}
           radarStation={props.radarStation}
+          updateRadarStation={props.updateRadarStation}
           radarOpacity={props.radarOpacity}
           alertOpacity={props.alertOpacity}
         />

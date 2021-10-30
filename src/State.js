@@ -138,6 +138,7 @@ export const StateMap = (props) => {
           />
           <RadarStations
             showRadarStations={props.showRadarStations}
+            updateRadarStation={props.updateRadarStation}
             projection={projection}
             dms={dms}
           />

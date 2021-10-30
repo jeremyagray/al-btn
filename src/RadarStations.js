@@ -24,6 +24,13 @@ const RadarStations = (props) => {
     error
   ] = useFetchData(radarStationsDataUrl);
 
+  const onMouseClickClosure = (station) => {
+    return (event) => {
+      event.target.value = station;
+      props.updateRadarStation(event);
+    }
+  };
+
   if (props.showRadarStations && radarStationsData && ! loading && ! error) {
     return (
       <React.Fragment
@@ -33,13 +40,13 @@ const RadarStations = (props) => {
           return (
             <circle
               className="radarStation"
-              data-testid={station.properties.station}
               id={station.properties.station}
               key={station.properties.station}
               cx={props.projection(station.geometry.coordinates)[0]}
               cy={props.projection(station.geometry.coordinates)[1]}
               r="5"
               transform={`translate(${props.dms.marginLeft}, ${props.dms.marginTop})`}
+              onClick={onMouseClickClosure(station.properties.station)}
             />
           );
         })}

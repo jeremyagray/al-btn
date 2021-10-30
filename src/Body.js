@@ -129,6 +129,7 @@ function Body() {
           showRadar={showRadar}
           showRadarStations={showRadarStations}
           radarStation={radarStation}
+          updateRadarStation={updateRadarStation}
           radarOpacity={radarOpacity}
           alertOpacity={alertOpacity}
         />
