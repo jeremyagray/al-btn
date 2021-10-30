@@ -19,10 +19,12 @@ const RadarStations = (props) => {
   }
 
   const [
-    radarStationsData
+    radarStationsData,
+    loading,
+    error
   ] = useFetchData(radarStationsDataUrl);
 
-  if (props.showRadarStations && radarStationsData) {
+  if (props.showRadarStations && radarStationsData && ! loading && ! error) {
     return (
       <React.Fragment
         key="radar-stations-fragment"
@@ -31,6 +33,7 @@ const RadarStations = (props) => {
           return (
             <circle
               className="radarStation"
+              data-testid={station.properties.station}
               id={station.properties.station}
               key={station.properties.station}
               cx={props.projection(station.geometry.coordinates)[0]}
