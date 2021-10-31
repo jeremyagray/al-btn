@@ -5,6 +5,7 @@
  */
 
 import {
+  useRef,
   useState
 } from 'react';
 
@@ -12,7 +13,10 @@ import './Body.css';
 import Visualization from './Visualization.js';
 import Controls from './Controls.js';
 
-function Body() {
+export const Body = () => {
+  // Map reference.
+  const mapRef = useRef(null);
+
   // Visualization selection.
   const [visualization, setVisualization] = useState('national');
   const visualizations = [
@@ -118,6 +122,7 @@ function Body() {
     <div className="AppBody container-fluid m-0 p-0">
       <div className="row m-0 p-0">
         <Visualization
+          ref={mapRef}
           visualization={visualization}
           projection={projection}
           currentState={currentState}
@@ -134,6 +139,7 @@ function Body() {
           alertOpacity={alertOpacity}
         />
         <Controls
+          map={mapRef}
           visualization={visualization}
           visualizations={visualizations}
           updateVisualization={updateVisualization}

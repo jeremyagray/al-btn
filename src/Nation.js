@@ -4,24 +4,30 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
+// React.
+import {
+  forwardRef
+} from 'react';
+import React from 'react';
+
 // D3.
 import * as d3 from 'd3';
 import { geoAlbersUsaTerritories } from 'd3-composite-projections';
 
-// Local components.
-import useChartDimensions from './useChartDimensions';
+// Local hooks and components.
+import { useChartDimensionsWithRef } from './useChartDimensions';
 import useFetchData from './useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 import RadarStations from './RadarStations';
 
-export const NationMap = (props) => {
-  const [ref, dms] = useChartDimensions({
+export const NationMap = forwardRef((props, ref) => {
+  const [dms] = useChartDimensionsWithRef({
     'marginTop': 30,
     'marginRight': 30,
     'marginBottom': 30,
     'marginLeft': 30
-  });
+  }, ref);
 
   const [
     nationData,
@@ -52,8 +58,7 @@ export const NationMap = (props) => {
   if (statuses.some(Boolean)) {
     return (
       <div
-        className="visualization d-flex"
-        ref={ref}
+        className="loadingStatuses d-flex"
       >
         <LoadingSpinner />
       </div>
@@ -61,8 +66,7 @@ export const NationMap = (props) => {
   } else if (errors.some(Boolean)) {
     return (
       <div
-        className="visualization"
-        ref={ref}
+        className="loadingErrors"
       >
         <LoadingError
           errors={errors}
@@ -87,10 +91,7 @@ export const NationMap = (props) => {
     const path = d3.geoPath().projection(projection);
 
     return (
-      <div
-        className="visualization"
-        ref={ref}
-      >
+      <React.Fragment>
         <svg
           id="mapSVG"
           height={dms.height}
@@ -141,9 +142,9 @@ export const NationMap = (props) => {
             dms={dms}
           />
         </svg>
-      </div>
+      </React.Fragment>
     );
   }
-}
+});
 
 export default NationMap;

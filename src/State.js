@@ -4,11 +4,17 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
+// React.
+import {
+  forwardRef
+} from 'react';
+import React from 'react';
+
 // D3.
 import * as d3 from 'd3';
 
-// Local components.
-import useChartDimensions from './useChartDimensions';
+// Local hooks and components.
+import { useChartDimensionsWithRef } from './useChartDimensions';
 import useFetchData from './useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
@@ -18,13 +24,13 @@ import RadarStations from './RadarStations';
 import Counties from './Counties';
 import States from './States';
 
-export const StateMap = (props) => {
-  const [ref, dms] = useChartDimensions({
+export const StateMap = forwardRef((props, ref) => {
+  const [dms] = useChartDimensionsWithRef({
     'marginTop': 30,
     'marginRight': 30,
     'marginBottom': 30,
     'marginLeft': 30
-  });
+  }, ref);
 
   const [
     stateData,
@@ -42,8 +48,7 @@ export const StateMap = (props) => {
   if (statuses.some(Boolean)) {
     return (
       <div
-        className="visualization d-flex"
-        ref={ref}
+        className="loadingStatuses d-flex"
       >
         <LoadingSpinner />
       </div>
@@ -51,8 +56,7 @@ export const StateMap = (props) => {
   } else if (errors.some(Boolean)) {
     return (
       <div
-        className="visualization"
-        ref={ref}
+        className="loadingErrors"
       >
         <LoadingError
           errors={errors}
@@ -70,10 +74,7 @@ export const StateMap = (props) => {
     const path = d3.geoPath().projection(projection);
 
     return (
-      <div
-        className="visualization"
-        ref={ref}
-      >
+      <React.Fragment>
         <svg
           id="mapSVG"
           height={dms.height}
@@ -167,9 +168,9 @@ export const StateMap = (props) => {
             clipPath="stateImageClipPath"
           />
         </svg>
-      </div>
+      </React.Fragment>
     );
   }
-}
+});
 
 export default StateMap;

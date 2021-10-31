@@ -4,12 +4,43 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
+import {
+  useEffect,
+  useState
+} from 'react';
+
+// Polyfillable resize observer.
+import {ResizeObserver} from '@juggle/resize-observer';
+
 import './Controls.css';
 
 import Config from './Config';
 import FormSelect from './FormSelect';
 
-function Controls(props) {
+export const Controls = (props) => {
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const element = props.map.current;
+    const resizeObserver = new ResizeObserver(entries => {
+      if (!Array.isArray(entries)) return
+      if (!entries.length) return
+
+      const entry = entries[0]
+
+      if (width !== entry.contentRect.width) setWidth(entry.contentRect.width)
+      if (height !== entry.contentRect.height) setHeight(entry.contentRect.height)
+      console.log(entry.contentRect.width);
+      console.log(entry.contentRect.height);
+    });
+
+    resizeObserver.observe(element);
+
+    return () => resizeObserver.unobserve(element);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.map]);
+
   return (
     <div className="AppControls col-md-4 m-0 p-0">
       <FormSelect

@@ -4,15 +4,24 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
-import './Visualization.css';
+import {
+  forwardRef
+} from 'react';
+
 import NationMap from './Nation.js';
 import StateMap from './State.js';
 
-function Visualization(props) {
+import './Visualization.css';
+
+export const Visualization = forwardRef((props, ref) => {
   if (props.visualization === 'national') {
     return (
-      <div className="AppVisualization col-md-8 m-0 p-0">
+      <div
+        className="AppVisualization col-md-8 m-0 p-0"
+        ref={ref}
+      >
         <NationMap
+          ref={ref}
           projection={props.projection}
           showStates={props.showStates}
           showRadarStations={props.showRadarStations}
@@ -21,8 +30,12 @@ function Visualization(props) {
     );
   } else if (props.visualization === 'weather') {
     return (
-      <div className="AppVisualization col-md-8 m-0 p-0">
+      <div
+        className="AppVisualization col-md-8 m-0 p-0"
+        ref={ref}
+      >
         <StateMap
+          ref={ref}
           currentState={props.currentState}
           clipToState={props.clipToState}
           showSurroundingStates={props.showSurroundingStates}
@@ -39,10 +52,13 @@ function Visualization(props) {
     );
   } else {
     return (
-      <div className="AppVisualization col-md-8 m-0 p-0">
+      <div
+        className="AppVisualization col-md-8 m-0 p-0"
+        ref={ref}
+      >
       </div>
     );
   }    
-}
+});
 
 export default Visualization;
