@@ -11,6 +11,9 @@ import {
 
 import Controls from './Controls.js';
 
+// Mock `ResizeObserver`.
+jest.mock('@juggle/resize-observer');
+
 // Not in jsdom, and hence jest, apparently.  Mock it.
 window.URL.createObjectURL = jest.fn();
 
@@ -28,6 +31,9 @@ const visualizations = [
 ];
 
 let props = {
+  'map': {
+    'current': null
+  },
   'visualization': '',
   'visualizations': visualizations,
   'updateVisualization': jest.fn(),
