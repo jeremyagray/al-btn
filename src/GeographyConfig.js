@@ -14,6 +14,21 @@ import StateSelect from './StateSelect';
 
 import './GeographyConfig.css';
 
+// <Form.Check
+//   type="checkbox"
+//   checked={props.clipToState}
+//   onChange={props.toggleClipToState}
+//   label="clip to state"
+//   id="clipToState"
+// />
+// <Form.Check
+//   type="checkbox"
+//   checked={props.showSurroundingStates}
+//   onChange={props.toggleShowSurroundingStates}
+//   label="show surrounding states"
+//   id="showSurroundingStates"
+// />
+
 const GeographyConfig = (props) => {
     return (
       <React.Fragment
@@ -21,20 +36,6 @@ const GeographyConfig = (props) => {
         <StateSelect
           currentState={props.currentState}
           updateCurrentState={props.updateCurrentState}
-        />
-        <Form.Check
-          type="checkbox"
-          checked={props.clipToState}
-          onChange={props.toggleClipToState}
-          label="clip to state"
-          id="clipToState"
-        />
-        <Form.Check
-          type="checkbox"
-          checked={props.showSurroundingStates}
-          onChange={props.toggleShowSurroundingStates}
-          label="show surrounding states"
-          id="showSurroundingStates"
         />
         <Form.Check
           type="checkbox"

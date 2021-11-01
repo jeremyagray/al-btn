@@ -41,16 +41,17 @@ export const Controls = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.map]);
 
+  // <FormSelect
+  //   id="VisualizationSelect"
+  //   classNames={['text-center']}
+  //   label="Select Visualization"
+  //   value={props.visualization}
+  //   items={props.visualizations}
+  //   onChange={props.updateVisualization}
+  // />
+
   return (
     <div className="AppControls col-md-4 m-0 p-0">
-      <FormSelect
-        id="VisualizationSelect"
-        classNames={['text-center']}
-        label="Select Visualization"
-        value={props.visualization}
-        items={props.visualizations}
-        onChange={props.updateVisualization}
-      />
       <Config
         visualization={props.visualization}
         projection={props.projection}

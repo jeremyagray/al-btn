@@ -18,7 +18,7 @@ export const Body = () => {
   const mapRef = useRef(null);
 
   // Visualization selection.
-  const [visualization, setVisualization] = useState('national');
+  const [visualization, setVisualization] = useState('weather');
   const visualizations = [
     {
       'value': 'national',
@@ -57,20 +57,20 @@ export const Body = () => {
   }
 
   // State map state.
-  const [showSurroundingStates, setShowSurroundingStates] = useState(false);
+  const [showSurroundingStates, setShowSurroundingStates] = useState(true);
 
   const toggleShowSurroundingStates = () => {
     setShowSurroundingStates(!showSurroundingStates);
   }
 
-  const [showCounties, setShowCounties] = useState(false);
+  const [showCounties, setShowCounties] = useState(true);
 
   const toggleShowCounties = () => {
     setShowCounties(!showCounties);
   }
 
   // Weather state.
-  const [showWeatherAlerts, setShowWeatherAlerts] = useState(false);
+  const [showWeatherAlerts, setShowWeatherAlerts] = useState(true);
 
   const toggleShowWeatherAlerts = () => {
     setShowWeatherAlerts(!showWeatherAlerts);
@@ -84,7 +84,7 @@ export const Body = () => {
   }
 
   // Radar state.
-  const [showRadar, setShowRadar] = useState(false);
+  const [showRadar, setShowRadar] = useState(true);
 
   const toggleShowRadar = () => {
     setShowRadar(!showRadar);
@@ -98,14 +98,14 @@ export const Body = () => {
   }
 
   // Radar station state.
-  const [radarStation, setRadarStation] = useState('');
+  const [radarStation, setRadarStation] = useState('KBMX');
 
   const updateRadarStation = (event) => {
     setRadarStation(event.target.value);
   }
 
   // Radar station state.
-  const [showRadarStations, setShowRadarStations] = useState(false);
+  const [showRadarStations, setShowRadarStations] = useState(true);
 
   const toggleShowRadarStations = () => {
     setShowRadarStations(!showRadarStations);
