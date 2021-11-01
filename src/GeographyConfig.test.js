@@ -27,10 +27,10 @@ test('renders the component', async () => {
   
   let ele = await screen.findByText(/Select State\/Territory/i);
   expect(ele).toBeInTheDocument();
-  ele = await screen.findByText(/clip to state/i);
-  expect(ele).toBeInTheDocument();
-  ele = await screen.findByText(/show surrounding states/i);
-  expect(ele).toBeInTheDocument();
+  // ele = await screen.findByText(/clip to state/i);
+  // expect(ele).toBeInTheDocument();
+  // ele = await screen.findByText(/show surrounding states/i);
+  // expect(ele).toBeInTheDocument();
   ele = await screen.findByText(/show counties/i);
   expect(ele).toBeInTheDocument();
 });

@@ -63,24 +63,24 @@ let props = {
   'updateAlertOpacity': jest.fn()
 };
 
-test('renders the `Selector` component', async () => {
-  props.visualization = 'national';
-  render(<Controls {...props} />);
+// test('renders the `Selector` component', async () => {
+//   props.visualization = 'national';
+//   render(<Controls {...props} />);
   
-  let ele = await screen.findByText(/Select Visualization/i);
-  expect(ele).toBeInTheDocument();
-});
+//   let ele = await screen.findByText(/Select Visualization/i);
+//   expect(ele).toBeInTheDocument();
+// });
 
 test('renders the `Config` component', async () => {
-  props.visualization = 'national';
-  render(<Controls {...props} />);
+  // props.visualization = 'national';
+  // render(<Controls {...props} />);
   
-  let ele = await screen.findByText(/Select Projection/i);
-  expect(ele).toBeInTheDocument();
+  // let ele = await screen.findByText(/Select Projection/i);
+  // expect(ele).toBeInTheDocument();
 
   props.visualization = 'weather';
   render(<Controls {...props} />);
   
-  ele = await screen.findByText(/Select State\/Territory/i);
+  let ele = await screen.findByText(/Select State\/Territory/i);
   expect(ele).toBeInTheDocument();
 });
