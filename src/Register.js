@@ -23,6 +23,7 @@ export const Register = () => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ passwordToo, setPasswordToo ] = useState('');
+  const [ sticky, setSticky ] = useState('');
   const [ serverResponse, setServerResponse ] = useState('');
 
   const handleFirstName = (event) => {
@@ -45,6 +46,10 @@ export const Register = () => {
     setPasswordToo(event.target.value);
   };
 
+  const handleSticky = (event) => {
+    setSticky(event.target.value);
+  };
+
   const submitForm = async (event) => {
     event.preventDefault();
 
@@ -57,22 +62,26 @@ export const Register = () => {
       'passwordToo': passwordToo
     };
 
-    try {
-      const response = await axios.post(url, userInfo);
+    if (sticky) {
+      setServerResponse('unable to create user');
+    } else {
+      try {
+        const response = await axios.post(url, userInfo);
 
-      /* istanbul ignore else */
-      if (response.status === 200) {
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setPasswordToo('');
-        setServerResponse(response.data.message);
-      }
-    } catch (error) {
-      /* istanbul ignore else */
-      if (error.response.status === 500) {
-        setServerResponse(error.response.data.error);
+        /* istanbul ignore else */
+        if (response.status === 200) {
+          setFirstName('');
+          setLastName('');
+          setEmail('');
+          setPassword('');
+          setPasswordToo('');
+          setServerResponse(response.data.message);
+        }
+      } catch (error) {
+        /* istanbul ignore else */
+        if (error.response.status === 500) {
+          setServerResponse(error.response.data.error);
+        }
       }
     }
   };
@@ -141,7 +150,7 @@ export const Register = () => {
           />
         </Form.Group>
 
-        <Form.Group className="p-3 mb-3" controlId="registerFormPassword">
+        <Form.Group className="p-3 mb-3" controlId="registerFormPasswordToo">
           <Form.Label>
             Re-enter Password
           </Form.Label>
@@ -151,6 +160,18 @@ export const Register = () => {
             placeholder="enter your password again"
             value={passwordToo}
             onChange={handlePasswordToo}
+          />
+        </Form.Group>
+
+        <Form.Group hidden className="p-3 mb-3" controlId="registerFormSticky">
+          <Form.Label hidden>
+            Sticky
+          </Form.Label>
+          <Form.Control
+            hidden
+            placeholder="enter a value if you are a spammer"
+            value={sticky}
+            onChange={handleSticky}
           />
         </Form.Group>
 
@@ -164,6 +185,6 @@ export const Register = () => {
       </Form>
     </div>
   );
-}
+};
 
 export default Register;
