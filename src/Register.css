@@ -1,1 +1,13 @@
+.AppRegister {
+}
+
+#registerFormSubmit {
+    color: #ffffff;
+    background-color: #b20021;
+}
+
+#registerFormSubmit:hover {
+    background-color: #ffffff;
+    color: #b20021;
+}
 
