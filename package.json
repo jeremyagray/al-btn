@@ -70,8 +70,6 @@
     "spell_check": false,
     "repair": false,
     "types": [
-      "build",
-      "ci",
       "depends",
       "docs",
       "feat",
@@ -79,14 +77,15 @@
       "perf",
       "refactor",
       "style",
-      "testing"
     ],
     "scopes": [
       "assets",
       "css",
       "data",
       "d3",
-      "react"
+      "react",
+      "testing",
+      "tooling"
     ],
     "footers": [
       "signed-off-by"
