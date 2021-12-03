@@ -38,14 +38,22 @@ const Header = (props) => {
                   Contact
                 </Nav.Link>
                 <NavDropdown
-                  alignRight
+                  align="end"
                   title="Account"
                   id="albtn-navbar-account-dropdown"
                 >
-                  <NavDropdown.Item as={Link} to="/logout">
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/logout"
+                    className="text-end"
+                  >
                     Logout
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/password/reset">
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/password/reset"
+                    className="text-end"
+                  >
                     Reset Password
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -76,17 +84,29 @@ const Header = (props) => {
                 Contact
               </Nav.Link>
               <NavDropdown
-                alignRight
+                align="end"
                 title="Account"
                 id="albtn-navbar-account-dropdown"
               >
-                <NavDropdown.Item as={Link} to="/login">
+                <NavDropdown.Item
+                  as={Link}
+                  to="/login"
+                  className="text-end"
+                >
                   Login
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/register">
+                <NavDropdown.Item
+                  as={Link}
+                  to="/register"
+                  className="text-end"
+                >
                   Register
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/password/reset">
+                <NavDropdown.Item
+                  as={Link}
+                  to="/password/reset"
+                  className="text-end"
+                >
                   Reset Password
                 </NavDropdown.Item>
               </NavDropdown>
