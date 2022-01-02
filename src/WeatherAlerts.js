@@ -38,16 +38,58 @@ export const WeatherAlerts = (props) => {
     return '#0000ff';
   }
 
+  const showAlertTooltipClosure = (areaText, alertText, start, end) => {
+    return (event) => {
+      const tt = document.createElement('div');
+      tt.id = 'alertTooltip';
+      tt.style.cssText = `position:absolute;width:250px;visibility:visible;opacity:0.75;color:#ffffff;left:${event.pageX + 20}px;top:${event.pageY + 20}px;`;
+
+      const ul = document.createElement('ul');
+      tt.appendChild(ul);
+
+      const alert = document.createElement('li');
+      const alertTextNode = document.createTextNode(alertText);
+      alert.appendChild(alertTextNode);
+      ul.appendChild(alert);
+
+      const area = document.createElement('li');
+      area.textContent = areaText;
+      ul.appendChild(area);
+
+      const onset = document.createElement('li');
+      onset.textContent = start;
+      ul.appendChild(onset);
+
+      const expires = document.createElement('li');
+      expires.textContent = end;
+      ul.appendChild(expires);
+
+      document.body.appendChild(tt);
+    }
+  }
+
+  const hideAlertTooltipClosure = () => {
+      return (event) => {
+        console.log("hide");
+
+        const tt = document.getElementById('alertTooltip');
+        tt.parentNode.removeChild(tt);
+      }
+  }
+
   if (props.showWeatherAlerts && wxData.features) {
     if (props.clipToState) {
       return (
         <React.Fragment
           key="weather-alerts-fragment"
         >
-          <g>
+          <g
+            pointerEvents="none"
+          >
             {wxData.features.map((alert) => {
               return (
                 <path
+                  pointerEvents="all"
                   className={props.pathClassName}
                   key={props.getId(alert)}
                   stroke={props.strokeColor}
@@ -59,6 +101,8 @@ export const WeatherAlerts = (props) => {
                     'opacity': props.alertOpacity
                   }}
                   clipPath={`url(#${props.clipPath})`}
+                  onMouseOver={showAlertTooltipClosure(alert.properties.areaDesc, alert.properties.event, alert.properties.onset, alert.properties.expires)}
+                  onMouseOut={hideAlertTooltipClosure()}
                 >
                 </path>
               );
@@ -72,10 +116,13 @@ export const WeatherAlerts = (props) => {
       <React.Fragment
         key="weather-alerts-fragment"
       >
-        <g>
+        <g
+          pointerEvents="none"
+        >
           {wxData.features.map((alert) => {
             return (
               <path
+                pointerEvents="all"
                 className={props.pathClassName}
                 key={props.getId(alert)}
                 stroke={props.strokeColor}
@@ -86,6 +133,8 @@ export const WeatherAlerts = (props) => {
                   'fill': getFillColor(alert),
                   'opacity': props.alertOpacity
                 }}
+                onMouseOver={showAlertTooltipClosure(alert.properties.areaDesc, alert.properties.event, alert.properties.onset, alert.properties.expires)}
+                onMouseOut={hideAlertTooltipClosure()}
               >
               </path>
             );
