@@ -19,6 +19,7 @@ import useFetchData from './useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 import WeatherAlerts from './WeatherAlerts';
+import WeatherAdvisories from './WeatherAdvisories';
 import Radar from './Radar';
 import RadarStations from './RadarStations';
 import Counties from './Counties';
@@ -137,11 +138,21 @@ export const StateMap = forwardRef((props, ref) => {
               return '#b20021';
             }}
           />
-          <RadarStations
-            showRadarStations={props.showRadarStations}
-            updateRadarStation={props.updateRadarStation}
-            projection={projection}
-            dms={dms}
+          <WeatherAdvisories
+            currentState={props.currentState}
+            pathClassName="wxAdvisory"
+            strokeColor="#0000ff"
+            strokeLinejoin="round"
+            pathFunction={path}
+            getId={(feat) => {
+              return feat.properties.id;
+            }}
+            marginLeft={dms.marginLeft}
+            marginTop={dms.marginTop}
+            alertOpacity={props.alertOpacity}
+            clipToState={props.clipToState}
+            clipPath="statePathClipPath"
+            showWeatherAdvisories={props.showWeatherAlerts}
           />
           <WeatherAlerts
             pathClassName="wxAlert"
@@ -157,6 +168,12 @@ export const StateMap = forwardRef((props, ref) => {
             clipToState={props.clipToState}
             clipPath="statePathClipPath"
             showWeatherAlerts={props.showWeatherAlerts}
+          />
+          <RadarStations
+            showRadarStations={props.showRadarStations}
+            updateRadarStation={props.updateRadarStation}
+            projection={projection}
+            dms={dms}
           />
           <Radar
             dms={dms}
