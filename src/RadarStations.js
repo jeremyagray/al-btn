@@ -36,20 +36,26 @@ const RadarStations = (props) => {
       <React.Fragment
         key="radar-stations-fragment"
       >
-        {radarStationsData.map((station) => {
-          return (
-            <circle
-              className="radarStation"
-              id={station.properties.station}
-              key={station.properties.station}
-              cx={props.projection(station.geometry.coordinates)[0]}
-              cy={props.projection(station.geometry.coordinates)[1]}
-              r="5"
-              transform={`translate(${props.dms.marginLeft}, ${props.dms.marginTop})`}
-              onClick={onMouseClickClosure(station.properties.station)}
-            />
-          );
-        })}
+        <g
+          pointerEvents="none"
+          className="radarStations"
+        >
+          {radarStationsData.map((station) => {
+            return (
+              <circle
+                className="radarStation"
+                pointerEvents="all"
+                id={station.properties.station}
+                key={station.properties.station}
+                cx={props.projection(station.geometry.coordinates)[0]}
+                cy={props.projection(station.geometry.coordinates)[1]}
+                r="5"
+                transform={`translate(${props.dms.marginLeft}, ${props.dms.marginTop})`}
+                onClick={onMouseClickClosure(station.properties.station)}
+              />
+            );
+          })}
+        </g>
       </React.Fragment>
     );
   }
