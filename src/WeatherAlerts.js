@@ -69,48 +69,20 @@ export const WeatherAlerts = (props) => {
   }
 
   const hideAlertTooltipClosure = () => {
-      return (event) => {
-        console.log("hide");
-
-        const tt = document.getElementById('alertTooltip');
-        tt.parentNode.removeChild(tt);
-      }
+    return (event) => {
+      const tt = document.getElementById('alertTooltip');
+      tt.parentNode.removeChild(tt);
+    }
   }
 
   if (props.showWeatherAlerts && wxData.features) {
-    if (props.clipToState) {
-      return (
-        <React.Fragment
-          key="weather-alerts-fragment"
-        >
-          <g
-            pointerEvents="none"
-          >
-            {wxData.features.map((alert) => {
-              return (
-                <path
-                  pointerEvents="all"
-                  className={props.pathClassName}
-                  key={props.getId(alert)}
-                  stroke={props.strokeColor}
-                  strokeLinejoin={props.strokeLinejoin}
-                  d={props.pathFunction(alert)}
-                  transform={`translate(${props.marginLeft}, ${props.marginTop})`}
-                  style={{
-                    'fill': getFillColor(alert),
-                    'opacity': props.alertOpacity
-                  }}
-                  clipPath={`url(#${props.clipPath})`}
-                  onMouseOver={showAlertTooltipClosure(alert.properties.areaDesc, alert.properties.event, alert.properties.onset, alert.properties.expires)}
-                  onMouseOut={hideAlertTooltipClosure()}
-                >
-                </path>
-              );
-            })}
-          </g>
-        </React.Fragment>
-      );
-    }
+    // Filter, keeping advisories.
+    const advisories = wxData.features.filter((feature) => {
+      if (feature.geometry == null) {
+        return false;
+      }
+      return true;
+    });
 
     return (
       <React.Fragment
@@ -118,6 +90,7 @@ export const WeatherAlerts = (props) => {
       >
         <g
           pointerEvents="none"
+          className="wxAlerts"
         >
           {wxData.features.map((alert) => {
             return (
