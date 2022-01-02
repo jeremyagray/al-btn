@@ -156,7 +156,7 @@ export const StateMap = forwardRef((props, ref) => {
             alertOpacity={props.alertOpacity}
             clipToState={props.clipToState}
             clipPath="statePathClipPath"
-            showWeatherAlters={props.showWeatherAlerts}
+            showWeatherAlerts={props.showWeatherAlerts}
           />
           <Radar
             dms={dms}
