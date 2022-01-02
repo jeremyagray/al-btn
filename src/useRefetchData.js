@@ -53,7 +53,7 @@ export const useRefetchData = (url, interval, dataDefault = null, config = {}) =
       clearInterval(id);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
+  }, [url, interval]);
 
   return [ data, loadingData, loadingDataError ];
 }
