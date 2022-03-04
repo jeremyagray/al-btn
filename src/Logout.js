@@ -1,42 +1,40 @@
-/*
+/**
+ *
  * SPDX-License-Identifier: MIT
  *
- * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+ * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
  */
 
+import {
+  useAuth
+} from 'react-oidc-context';
+
 // React Bootstrap.
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import './Logout.css';
 
 export const Logout = (props) => {
+  const auth = useAuth();
 
-  const submitForm = async (event) => {
-    event.preventDefault();
-
-    props.setToken(null);
-  };
+  if (auth.isAuthenticated) {
+    return (
+      <main>
+        <button onClick={() => auth.signoutRedirect()}>Logout</button>
+      </main>
+    );
+  }
 
   return (
-    <div className="AppLogout p-3">
+    <main>
       <h2>
-        Logout
+        Not Logged In
       </h2>
-      <Form
-        className="p-3"
-        role="form"
-        onSubmit={submitForm}
-      >
-        <Button
-          id="logoutFormSubmit"
-          variant="primary"
-          type="submit"
-        >
-          Logout
-        </Button>
-      </Form>
-    </div>
+      <p>
+        You have to log in before logging out if you really want to log out.
+      </p>
+    </main>
   );
 };
 

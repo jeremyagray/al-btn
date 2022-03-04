@@ -1,7 +1,9 @@
-/*
+/**
+ *
  * SPDX-License-Identifier: MIT
  *
- * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+ * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
  */
 
 // React Router.
@@ -39,7 +41,7 @@ const Header = (props) => {
               <Nav.Link as={Link} to="/contact">
                 Contact
               </Nav.Link>
-              <AccountDropdown token={props.token} />
+              <AccountDropdown />
             </Nav>
           </Navbar.Collapse>
         </Container>

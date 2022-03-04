@@ -1,7 +1,9 @@
-/*
+/**
+ *
  * SPDX-License-Identifier: MIT
  *
- * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
+ * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
  */
 
 // React Router.
@@ -9,12 +11,18 @@ import {
   Link
 } from 'react-router-dom';
 
+import {
+  useAuth
+} from 'react-oidc-context';
+
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import './AccountDropdown.css';
 
 const AccountDropdown = (props) => {
-  if (props.token) {
+  const auth = useAuth();
+
+  if (auth.isAuthenticated) {
     return (
       <NavDropdown
         align="end"
