@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?><WMS_Capabilities version="1.3.0" updateSequence="12769" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms https://opengeo.ncep.noaa.gov:443/geoserver/schemas/wms/1.3.0/capabilities_1_3_0.xsd">
+  <Service>
+    <Name>WMS</Name>
+    <Title/>
+    <Abstract/>
+    <KeywordList/>
+    <OnlineResource xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson/>
+        <ContactOrganization/>
+      </ContactPersonPrimary>
+      <ContactPosition/>
+      <ContactAddress>
+        <AddressType/>
+        <Address/>
+        <City/>
+        <StateOrProvince/>
+        <PostCode/>
+        <Country/>
+      </ContactAddress>
+      <ContactVoiceTelephone/>
+      <ContactFacsimileTelephone/>
+      <ContactElectronicMailAddress/>
+    </ContactInformation>
+    <Fees>none</Fees>
+    <AccessConstraints>none</AccessConstraints>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/kbmx/ows?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/kbmx/ows?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/png</Format>
+        <Format>application/atom+xml</Format>
+        <Format>application/json;type=utfgrid</Format>
+        <Format>application/pdf</Format>
+        <Format>application/rss+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml;mode=networklink</Format>
+        <Format>application/vnd.google-earth.kmz</Format>
+        <Format>application/x-sqlite3</Format>
+        <Format>image/geotiff</Format>
+        <Format>image/geotiff8</Format>
+        <Format>image/gif</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/png; mode=8bit</Format>
+        <Format>image/svg+xml</Format>
+        <Format>image/tiff</Format>
+        <Format>image/tiff8</Format>
+        <Format>image/vnd.jpeg-png</Format>
+        <Format>text/html; subtype=openlayers</Format>
+        <Format>text/html; subtype=openlayers2</Format>
+        <Format>text/html; subtype=openlayers3</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/kbmx/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/plain</Format>
+        <Format>application/vnd.ogc.gml</Format>
+        <Format>text/xml</Format>
+        <Format>application/vnd.ogc.gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/html</Format>
+        <Format>application/json</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/kbmx/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>XML</Format>
+      <Format>INIMAGE</Format>
+      <Format>BLANK</Format>
+      <Format>JSON</Format>
+    </Exception>
+    <Layer>
+      <Title/>
+      <Abstract/>
+      <!--Limited list of EPSG projections:-->
+      <CRS>EPSG:3857</CRS>
+      <CRS>EPSG:4326</CRS>
+      <CRS>EPSG:4269</CRS>
+      <CRS>CRS:84</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>-91.77</westBoundLongitude>
+        <eastBoundLongitude>-81.7692</eastBoundLongitude>
+        <southBoundLatitude>28.1712</southBoundLatitude>
+        <northBoundLatitude>38.172</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.1712" maxx="-81.7692" maxy="38.172"/>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bdhc</Name>
+        <Title>kbmx_bdhc</Title>
+        <Abstract>NEXRAD Level 3 Dual-Pol Digital Hydrometeor Classification. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bdhc</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.77055</eastBoundLongitude>
+          <southBoundLatitude>28.17255</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.17255" maxx="-81.77055" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.17255" miny="-91.77" maxx="38.172" maxy="-81.77055"/>
+        <Dimension name="time" default="2022-03-31T02:33:57Z" units="ISO8601">2022-03-31T00:36:35.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:39:38.000Z,2022-03-31T00:40:57.000Z,2022-03-31T00:42:48.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:46:01.000Z,2022-03-31T00:47:32.000Z,2022-03-31T00:49:21.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:52:32.000Z,2022-03-31T00:54:17.000Z,2022-03-31T00:55:52.000Z,2022-03-31T00:57:45.000Z,2022-03-31T00:58:59.000Z,2022-03-31T01:00:40.000Z,2022-03-31T01:02:15.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:05:20.000Z,2022-03-31T01:07:02.000Z,2022-03-31T01:08:36.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:11:39.000Z,2022-03-31T01:13:17.000Z,2022-03-31T01:14:49.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:17:51.000Z,2022-03-31T01:19:29.000Z,2022-03-31T01:21:02.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:24:04.000Z,2022-03-31T01:25:43.000Z,2022-03-31T01:27:15.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:30:18.000Z,2022-03-31T01:31:56.000Z,2022-03-31T01:33:29.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:36:30.000Z,2022-03-31T01:38:08.000Z,2022-03-31T01:39:41.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:42:58.000Z,2022-03-31T01:44:37.000Z,2022-03-31T01:46:30.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:49:40.000Z,2022-03-31T01:51:18.000Z,2022-03-31T01:52:51.000Z,2022-03-31T01:54:41.000Z,2022-03-31T01:56:07.000Z,2022-03-31T01:57:47.000Z,2022-03-31T01:59:40.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:03:04.000Z,2022-03-31T02:04:43.000Z,2022-03-31T02:06:36.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:10:00.000Z,2022-03-31T02:11:39.000Z,2022-03-31T02:13:32.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:16:55.000Z,2022-03-31T02:18:35.000Z,2022-03-31T02:20:28.000Z,2022-03-31T02:22:26.000Z,2022-03-31T02:23:48.000Z,2022-03-31T02:25:36.000Z,2022-03-31T02:27:14.000Z,2022-03-31T02:29:10.000Z,2022-03-31T02:30:31.000Z,2022-03-31T02:32:19.000Z,2022-03-31T02:33:57.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BDHC"/>
+        </DataURL>
+        <Style>
+          <Name>radar_bdhc</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/bdhc.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bdsa</Name>
+        <Title>kbmx_bdsa</Title>
+        <Abstract>NEXRAD Level 3 Dual-Pol Digital Storm Total Precipitation. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bdsa</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.77055</eastBoundLongitude>
+          <southBoundLatitude>28.17255</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.17255" maxx="-81.77055" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.17255" miny="-91.77" maxx="38.172" maxy="-81.77055"/>
+        <Dimension name="time" default="2022-03-31T02:22:26Z" units="ISO8601">2022-03-31T00:32:04.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:57:45.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:54:41.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:22:26.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BDSA"/>
+        </DataURL>
+        <Style>
+          <Name>raster</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/kbmx/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=kbmx_bdsa"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bdzd</Name>
+        <Title>kbmx_bdzd</Title>
+        <Abstract>NEXRAD Level 3 Dual-Pol Digital Differential Reflectivity. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bdzd</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.77055</eastBoundLongitude>
+          <southBoundLatitude>28.17255</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.17255" maxx="-81.77055" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.17255" miny="-91.77" maxx="38.172" maxy="-81.77055"/>
+        <Dimension name="time" default="2022-03-31T02:33:57Z" units="ISO8601">2022-03-31T00:36:35.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:39:38.000Z,2022-03-31T00:40:57.000Z,2022-03-31T00:42:48.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:46:01.000Z,2022-03-31T00:47:32.000Z,2022-03-31T00:49:21.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:52:32.000Z,2022-03-31T00:54:17.000Z,2022-03-31T00:55:52.000Z,2022-03-31T00:57:45.000Z,2022-03-31T00:58:59.000Z,2022-03-31T01:00:40.000Z,2022-03-31T01:02:15.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:05:20.000Z,2022-03-31T01:07:02.000Z,2022-03-31T01:08:36.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:11:39.000Z,2022-03-31T01:13:17.000Z,2022-03-31T01:14:49.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:17:51.000Z,2022-03-31T01:19:29.000Z,2022-03-31T01:21:02.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:24:04.000Z,2022-03-31T01:25:43.000Z,2022-03-31T01:27:15.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:30:18.000Z,2022-03-31T01:31:56.000Z,2022-03-31T01:33:29.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:36:30.000Z,2022-03-31T01:38:08.000Z,2022-03-31T01:39:41.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:42:58.000Z,2022-03-31T01:44:37.000Z,2022-03-31T01:46:30.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:49:40.000Z,2022-03-31T01:51:18.000Z,2022-03-31T01:52:51.000Z,2022-03-31T01:54:41.000Z,2022-03-31T01:56:07.000Z,2022-03-31T01:57:47.000Z,2022-03-31T01:59:40.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:03:04.000Z,2022-03-31T02:04:43.000Z,2022-03-31T02:06:36.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:10:00.000Z,2022-03-31T02:11:39.000Z,2022-03-31T02:13:32.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:16:55.000Z,2022-03-31T02:18:35.000Z,2022-03-31T02:20:28.000Z,2022-03-31T02:22:26.000Z,2022-03-31T02:23:48.000Z,2022-03-31T02:25:36.000Z,2022-03-31T02:27:14.000Z,2022-03-31T02:29:10.000Z,2022-03-31T02:30:31.000Z,2022-03-31T02:32:19.000Z,2022-03-31T02:33:57.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BDZD"/>
+        </DataURL>
+        <Style>
+          <Name>radar_bdzd</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/bdzd.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_beet</Name>
+        <Title>kbmx_beet</Title>
+        <Abstract>NEXRAD Level 3 Enhanced Echo Tops. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_beet</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.7692</eastBoundLongitude>
+          <southBoundLatitude>28.1712</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.1712" maxx="-81.7692" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.1712" miny="-91.77" maxx="38.172" maxy="-81.7692"/>
+        <Dimension name="time" default="2022-03-31T02:22:26Z" units="ISO8601">2022-03-31T00:32:04.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:57:45.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:48:28.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:22:26.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BEET"/>
+        </DataURL>
+        <Style>
+          <Name>raster</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/kbmx/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=kbmx_beet"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bohp</Name>
+        <Title>kbmx_bohp</Title>
+        <Abstract>NEXRAD Level 3 Surface Rainfall Accumulation One Hour Running Total. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bohp</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-89.77</westBoundLongitude>
+          <eastBoundLongitude>-83.77</eastBoundLongitude>
+          <southBoundLatitude>30.172</southBoundLatitude>
+          <northBoundLatitude>36.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-89.77" miny="30.172" maxx="-83.77" maxy="36.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="30.172" miny="-89.77" maxx="36.172" maxy="-83.77"/>
+        <Dimension name="time" default="2022-03-31T02:29:10Z" units="ISO8601">2022-03-31T00:32:04.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:57:45.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:54:41.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:22:26.000Z,2022-03-31T02:29:10.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BOHP"/>
+        </DataURL>
+        <Style>
+          <Name>radar_bohp</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/bohp.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bref_raw</Name>
+        <Title>kbmx_bref_raw</Title>
+        <Abstract>NEXRAD Level 2 Super Resolution Radar Base Reflectivity. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bref_raw</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.77</eastBoundLongitude>
+          <southBoundLatitude>28.172</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.172" maxx="-81.77" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.172" miny="-91.77" maxx="38.172" maxy="-81.77"/>
+        <Dimension name="time" default="2022-03-31T02:33:56Z" units="ISO8601">2022-03-31T00:34:44.000Z,2022-03-31T00:36:34.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:39:37.000Z,2022-03-31T00:40:57.000Z,2022-03-31T00:42:47.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:46:01.000Z,2022-03-31T00:47:31.000Z,2022-03-31T00:49:21.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:52:31.000Z,2022-03-31T00:54:16.000Z,2022-03-31T00:55:52.000Z,2022-03-31T00:57:45.000Z,2022-03-31T00:58:59.000Z,2022-03-31T01:00:40.000Z,2022-03-31T01:02:14.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:05:20.000Z,2022-03-31T01:07:01.000Z,2022-03-31T01:08:35.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:11:38.000Z,2022-03-31T01:13:16.000Z,2022-03-31T01:14:49.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:17:50.000Z,2022-03-31T01:19:29.000Z,2022-03-31T01:21:02.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:24:04.000Z,2022-03-31T01:25:42.000Z,2022-03-31T01:27:15.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:30:17.000Z,2022-03-31T01:31:56.000Z,2022-03-31T01:33:28.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:36:30.000Z,2022-03-31T01:38:08.000Z,2022-03-31T01:39:41.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:42:57.000Z,2022-03-31T01:44:36.000Z,2022-03-31T01:46:30.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:49:39.000Z,2022-03-31T01:51:18.000Z,2022-03-31T01:52:50.000Z,2022-03-31T01:54:41.000Z,2022-03-31T01:56:07.000Z,2022-03-31T01:57:46.000Z,2022-03-31T01:59:39.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:03:03.000Z,2022-03-31T02:04:42.000Z,2022-03-31T02:06:36.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:10:00.000Z,2022-03-31T02:11:39.000Z,2022-03-31T02:13:32.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:16:55.000Z,2022-03-31T02:18:34.000Z,2022-03-31T02:20:28.000Z,2022-03-31T02:22:26.000Z,2022-03-31T02:23:47.000Z,2022-03-31T02:25:36.000Z,2022-03-31T02:27:13.000Z,2022-03-31T02:29:10.000Z,2022-03-31T02:30:30.000Z,2022-03-31T02:32:18.000Z,2022-03-31T02:33:56.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L2/KBMX/BREF_RAW"/>
+        </DataURL>
+        <Style>
+          <Name>radar_reflectivity</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/reflectivity.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bsrm</Name>
+        <Title>kbmx_bsrm</Title>
+        <Abstract>NEXRAD Level 3 Storm Relative Mean Radial Velocity. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bsrm</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-89.77</westBoundLongitude>
+          <eastBoundLongitude>-83.7706</eastBoundLongitude>
+          <southBoundLatitude>30.1726</southBoundLatitude>
+          <northBoundLatitude>36.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-89.77" miny="30.1726" maxx="-83.7706" maxy="36.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="30.1726" miny="-89.77" maxx="36.172" maxy="-83.7706"/>
+        <Dimension name="time" default="2022-03-31T02:29:10Z" units="ISO8601">2022-03-31T00:32:04.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:57:45.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:54:41.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:22:26.000Z,2022-03-31T02:29:10.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BSRM"/>
+        </DataURL>
+        <Style>
+          <Name>radar_bsrm</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/bsrm.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bstp</Name>
+        <Title>kbmx_bstp</Title>
+        <Abstract>NEXRAD Level 3 Surface Rainfall Accumulation Storm Total. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bstp</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-89.77</westBoundLongitude>
+          <eastBoundLongitude>-83.77</eastBoundLongitude>
+          <southBoundLatitude>30.172</southBoundLatitude>
+          <northBoundLatitude>36.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-89.77" miny="30.172" maxx="-83.77" maxy="36.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="30.172" miny="-89.77" maxx="36.172" maxy="-83.77"/>
+        <Dimension name="time" default="2022-03-31T02:29:10Z" units="ISO8601">2022-03-31T00:32:04.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:57:45.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:54:41.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:22:26.000Z,2022-03-31T02:29:10.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BSTP"/>
+        </DataURL>
+        <Style>
+          <Name>raster</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/kbmx/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=kbmx_bstp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bvel</Name>
+        <Title>kbmx_bvel</Title>
+        <Abstract>NEXRAD Level 3 Base Radial Velocity. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bvel</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.77055</eastBoundLongitude>
+          <southBoundLatitude>28.17255</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.17255" maxx="-81.77055" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.17255" miny="-91.77" maxx="38.172" maxy="-81.77055"/>
+        <Dimension name="time" default="2022-03-02T16:20:58Z" units="ISO8601">2022-03-02T14:27:26.000Z,2022-03-02T14:31:19.000Z,2022-03-02T14:36:09.000Z,2022-03-02T14:40:01.000Z,2022-03-02T14:44:51.000Z,2022-03-02T14:48:45.000Z,2022-03-02T14:53:35.000Z,2022-03-02T14:57:28.000Z,2022-03-02T15:02:18.000Z,2022-03-02T15:06:11.000Z,2022-03-02T15:11:00.000Z,2022-03-02T15:14:53.000Z,2022-03-02T15:19:43.000Z,2022-03-02T15:23:37.000Z,2022-03-02T15:28:21.000Z,2022-03-02T15:32:12.000Z,2022-03-02T15:36:51.000Z,2022-03-02T15:41:49.000Z,2022-03-02T15:46:33.000Z,2022-03-02T15:50:24.000Z,2022-03-02T15:55:14.000Z,2022-03-02T15:59:07.000Z,2022-03-02T16:03:38.000Z,2022-03-02T16:07:24.000Z,2022-03-02T16:12:15.000Z,2022-03-02T16:16:08.000Z,2022-03-02T16:20:58.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/BVEL"/>
+        </DataURL>
+        <Style>
+          <Name>radar_velocity</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/radial_velocity.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_bvel_raw</Name>
+        <Title>kbmx_bvel_raw</Title>
+        <Abstract>NEXRAD Level 2 Super Resolution Radar Base Radial Velocity. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_bvel_raw</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.77</eastBoundLongitude>
+          <southBoundLatitude>28.172</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.172" maxx="-81.77" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.172" miny="-91.77" maxx="38.172" maxy="-81.77"/>
+        <Dimension name="time" default="2022-03-31T02:34:14Z" units="ISO8601">2022-03-31T00:35:01.000Z,2022-03-31T00:36:52.000Z,2022-03-31T00:38:34.000Z,2022-03-31T00:39:55.000Z,2022-03-31T00:41:14.000Z,2022-03-31T00:43:05.000Z,2022-03-31T00:45:01.000Z,2022-03-31T00:46:18.000Z,2022-03-31T00:47:49.000Z,2022-03-31T00:49:38.000Z,2022-03-31T00:51:32.000Z,2022-03-31T00:52:49.000Z,2022-03-31T00:54:33.000Z,2022-03-31T00:56:09.000Z,2022-03-31T00:58:03.000Z,2022-03-31T00:59:16.000Z,2022-03-31T01:00:57.000Z,2022-03-31T01:02:31.000Z,2022-03-31T01:04:23.000Z,2022-03-31T01:05:37.000Z,2022-03-31T01:07:18.000Z,2022-03-31T01:08:52.000Z,2022-03-31T01:10:45.000Z,2022-03-31T01:11:56.000Z,2022-03-31T01:13:33.000Z,2022-03-31T01:15:06.000Z,2022-03-31T01:16:57.000Z,2022-03-31T01:18:08.000Z,2022-03-31T01:19:46.000Z,2022-03-31T01:21:19.000Z,2022-03-31T01:23:10.000Z,2022-03-31T01:24:21.000Z,2022-03-31T01:26:00.000Z,2022-03-31T01:27:32.000Z,2022-03-31T01:29:24.000Z,2022-03-31T01:30:35.000Z,2022-03-31T01:32:13.000Z,2022-03-31T01:33:46.000Z,2022-03-31T01:35:36.000Z,2022-03-31T01:36:47.000Z,2022-03-31T01:38:25.000Z,2022-03-31T01:39:58.000Z,2022-03-31T01:41:49.000Z,2022-03-31T01:43:15.000Z,2022-03-31T01:44:54.000Z,2022-03-31T01:46:47.000Z,2022-03-31T01:48:46.000Z,2022-03-31T01:49:57.000Z,2022-03-31T01:51:35.000Z,2022-03-31T01:53:08.000Z,2022-03-31T01:54:59.000Z,2022-03-31T01:56:24.000Z,2022-03-31T01:58:04.000Z,2022-03-31T01:59:57.000Z,2022-03-31T02:01:55.000Z,2022-03-31T02:03:21.000Z,2022-03-31T02:05:00.000Z,2022-03-31T02:06:53.000Z,2022-03-31T02:08:52.000Z,2022-03-31T02:10:17.000Z,2022-03-31T02:11:56.000Z,2022-03-31T02:13:49.000Z,2022-03-31T02:15:47.000Z,2022-03-31T02:17:13.000Z,2022-03-31T02:18:52.000Z,2022-03-31T02:20:45.000Z,2022-03-31T02:22:44.000Z,2022-03-31T02:24:05.000Z,2022-03-31T02:25:53.000Z,2022-03-31T02:27:31.000Z,2022-03-31T02:29:27.000Z,2022-03-31T02:30:48.000Z,2022-03-31T02:32:36.000Z,2022-03-31T02:34:14.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L2/KBMX/BVEL_RAW"/>
+        </DataURL>
+        <Style>
+          <Name>radar_velocity</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/radial_velocity.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_cref</Name>
+        <Title>kbmx_cref</Title>
+        <Abstract>NEXRAD Level 3 Composite Reflectivity. This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_cref</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-89.77</westBoundLongitude>
+          <eastBoundLongitude>-83.7706</eastBoundLongitude>
+          <southBoundLatitude>30.1726</southBoundLatitude>
+          <northBoundLatitude>36.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-89.77" miny="30.1726" maxx="-83.7706" maxy="36.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="30.1726" miny="-89.77" maxx="36.172" maxy="-83.7706"/>
+        <Dimension name="time" default="2022-03-31T02:22:26Z" units="ISO8601">2022-03-31T00:32:04.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:57:45.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:54:41.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:22:26.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/CREF"/>
+        </DataURL>
+        <Style>
+          <Name>radar_reflectivity</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/reflectivity.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>kbmx_hvil</Name>
+        <Title>kbmx_hvil</Title>
+        <Abstract>NEXRAD Level 3 Digital Vertical Integrated Liquid (VIL). This data is provided Multi-Radar-Multi-Sensor (MRMS) algorithm.</Abstract>
+        <KeywordList>
+          <Keyword>kbmx_hvil</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-91.77</westBoundLongitude>
+          <eastBoundLongitude>-81.7692</eastBoundLongitude>
+          <southBoundLatitude>28.1712</southBoundLatitude>
+          <northBoundLatitude>38.172</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-91.77" miny="28.1712" maxx="-81.7692" maxy="38.172"/>
+        <BoundingBox CRS="EPSG:4326" minx="28.1712" miny="-91.77" maxx="38.172" maxy="-81.7692"/>
+        <Dimension name="time" default="2022-03-31T02:22:26Z" units="ISO8601">2022-03-31T00:32:04.000Z,2022-03-31T00:38:17.000Z,2022-03-31T00:44:44.000Z,2022-03-31T00:51:14.000Z,2022-03-31T00:57:45.000Z,2022-03-31T01:04:06.000Z,2022-03-31T01:10:28.000Z,2022-03-31T01:16:40.000Z,2022-03-31T01:22:53.000Z,2022-03-31T01:29:07.000Z,2022-03-31T01:35:19.000Z,2022-03-31T01:41:32.000Z,2022-03-31T01:48:28.000Z,2022-03-31T01:54:41.000Z,2022-03-31T02:01:38.000Z,2022-03-31T02:08:34.000Z,2022-03-31T02:15:30.000Z,2022-03-31T02:22:26.000Z</Dimension>
+        <DataURL>
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://mrms.ncep.noaa.gov/data/RIDGEII/L3/KBMX/HVIL"/>
+        </DataURL>
+        <Style>
+          <Name>radar_vil</Name>
+          <Title>A boring default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="500" height="40">
+            <Format>image/png;charset=UTF-8</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://opengeo.ncep.noaa.gov:443/geoserver/styles/radar_vil.png"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>
