@@ -1,4 +1,4 @@
-/*
+/**
  *
  * dark-blue-yonder, custom view of NWS radar, alert, and weather data
  *
@@ -23,7 +23,7 @@ import useFetchWmsCapabilities from './useFetchWmsCapabilities.js';
 
 const loadXmlCapabilities = () => {
   return fs.readFileSync(
-    '/home/gray/src/work/al-btn/src/capabilities.xml',
+    '/home/gray/src/work/al-btn/src/hooks/capabilities.xml',
     {'encoding': 'utf-8'}
   );
 };

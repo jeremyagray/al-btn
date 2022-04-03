@@ -4,46 +4,10 @@
  * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
-import useRefetchData from './useRefetchData';
-import useFetchWmsCapabilities from './useFetchWmsCapabilities';
+import useRefetchData from './hooks/useRefetchData';
+import useFetchWmsCapabilities from './hooks/useFetchWmsCapabilities';
 
 import './Radar.css';
-
-const parseCapabilitiesToProductTimes = (xmlString, args = {'product': 'kbmx_bref_raw'}) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(xmlString, 'text/xml');
-  const layers = doc.getElementsByTagName("Layer");
-
-  let times = [];
-
-  for (let i = 0; i < layers.length; i++) {
-    if (layers.item(i).getElementsByTagName("Name").item(0).textContent === `${args.product}`) {
-      times = layers.item(i).getElementsByTagName("Dimension").item(0).textContent.split(',');
-      break;
-    }
-  }
-
-  return times;
-}
-
-const parseCapabilitiesToProducts = (xmlString, args = {}) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(xmlString, 'text/xml');
-  const layers = doc.getElementsByTagName("Layer");
-
-  let products = [];
-
-  for (let i = 0; i < layers.length; i++) {
-    products.push(
-      layers
-        .item(i)
-        .getElementsByTagName("Name")
-        .item(0)
-        .textContent);
-  }
-
-  return products;
-}
 
 const Radar = (props) => {
   let radarDataUrl = '';
@@ -53,6 +17,8 @@ const Radar = (props) => {
     const [maxy, minx] = props.projection.invert([props.dms.width - props.dms.marginLeft, props.dms.height - props.dms.marginTop]);
 
     radarDataUrl = `https://opengeo.ncep.noaa.gov/geoserver/${props.radarStation.toLowerCase()}/ows?service=wms&version=1.3.0&request=GetMap&format=image/png&&layers=${props.radarStation.toLowerCase()}_bref_raw&crs=EPSG:4326&transparent=true&width=${Math.floor(props.dms.boundedWidth)}&height=${Math.floor(props.dms.boundedHeight)}&bbox=${minx},${miny},${maxx},${maxy}`;
+
+    // console.log(`radarDataUrl: ${radarDataUrl}`);
   }
 
   const [
@@ -62,14 +28,12 @@ const Radar = (props) => {
   ] = useRefetchData(radarDataUrl, 240000, null, {'responseType': 'blob'});
 
   const {
-    'data': siteProducts,
-    'loadingError': productsLoadingError
-  } = useFetchWmsCapabilities('kbmx', parseCapabilitiesToProducts, {});
+    'data': capData,
+    'isLoading': capIsLoading,
+    'loadingError': capLoadingError
+  } = useFetchWmsCapabilities(props.radarStation.toLowerCase());
 
-  const {
-    'data': siteTimes,
-    'loadingError': timesLoadingError
-  } = useFetchWmsCapabilities('kbmx', parseCapabilitiesToProductTimes, {'product': 'kbmx_bref_raw'});
+  console.log(capData);
 
   if (props.showRadar && props.radarStation && radarData && ! radarLoading && ! radarError) {
     if (props.clipToState) {

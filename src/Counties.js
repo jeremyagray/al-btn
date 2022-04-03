@@ -1,14 +1,20 @@
-/*
+/**
+ *
+ * dark-blue-yonder, custom view of NWS radar, alert, and weather data
+ *
+ * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
+ * All rights reserved.
+ *
  * SPDX-License-Identifier: MIT
  *
- * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
 // React.
 import React from 'react';
 
 // Other stuff.
-import useFetchData from './useFetchData';
+import useFetchData from './hooks/useFetchData';
 
 const Counties = (props) => {
   let countiesUrl = '';

@@ -1,7 +1,13 @@
-/*
+/**
+ *
+ * dark-blue-yonder, custom view of NWS radar, alert, and weather data
+ *
+ * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
+ * All rights reserved.
+ *
  * SPDX-License-Identifier: MIT
  *
- * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
 // React.
@@ -15,8 +21,8 @@ import * as d3 from 'd3';
 import { geoAlbersUsaTerritories } from 'd3-composite-projections';
 
 // Local hooks and components.
-import { useChartDimensionsWithRef } from './useChartDimensions';
-import useFetchData from './useFetchData';
+import { useChartDimensionsWithRef } from './hooks/useChartDimensions';
+import useFetchData from './hooks/useFetchData';
 import LoadingSpinner from './LoadingSpinner';
 import LoadingError from './LoadingError';
 import RadarStations from './RadarStations';

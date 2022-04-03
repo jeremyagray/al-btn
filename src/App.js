@@ -1,8 +1,12 @@
 /**
  *
- * SPDX-License-Identifier: MIT
+ * dark-blue-yonder, custom view of NWS radar, alert, and weather data
  *
  * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: MIT
  *
  */
 
@@ -24,19 +28,19 @@ import Login from './Login.js';
 import Logout from './Logout.js';
 import Register from './Register.js';
 
-import useFetchDataWithToken from './useFetchDataWithToken';
+import useFetchDataWithToken from './hooks/useFetchDataWithToken';
 
 import './App.css';
 
 export const App = () => {
   const auth = useAuth();
 
-  if (auth.isAuthenticated) {
-    console.log(auth);
-    console.log(`token: ${auth?.user?.id_token}`);
-  } else {
-    console.log('not authenticated');
-  }
+  // if (auth.isAuthenticated) {
+  //   console.log(auth);
+  //   console.log(`token: ${auth?.user?.id_token}`);
+  // } else {
+  //   console.log('not authenticated');
+  // }
 
   let helloUrl = 'http://localhost:3002/api/v1/hello/hi';
 

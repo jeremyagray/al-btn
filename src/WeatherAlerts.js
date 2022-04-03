@@ -1,14 +1,20 @@
-/*
+/**
+ *
+ * dark-blue-yonder, custom view of NWS radar, alert, and weather data
+ *
+ * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
+ * All rights reserved.
+ *
  * SPDX-License-Identifier: MIT
  *
- * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
 // React.
 import React from 'react';
 
-import useFetchData from './useFetchData';
-import useRefetchData from './useRefetchData';
+import useFetchData from './hooks/useFetchData';
+import useRefetchData from './hooks/useRefetchData';
 
 const colorsUrl = 'http://192.168.1.67:3002/api/v1/weather/nws/alert/colors/all';
 
