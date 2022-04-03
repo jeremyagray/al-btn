@@ -1,8 +1,12 @@
 /*
  *
- * SPDX-License-Identifier: MIT
+ * dark-blue-yonder, custom view of NWS radar, alert, and weather data
  *
  * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: MIT
  *
  */
 
@@ -21,7 +25,20 @@ const parseCapabilities = (caps) => {
   const doc = parser.parseFromString(caps, "application/xml");
   let products = [];
 
-  // Capability -> Layer -> Layers.
+  // Capability
+  //   Layer
+  //     Layer
+  //       Name
+  //       Abstract
+  //       Style
+  //         LegendURL, attributes height, width
+  //           OnlineResource, attribute xlink:href
+  //       Dimension
+  //       EX_GeographicBoundingBox
+  //         northBoundLatitude
+  //         southBoundLatitude
+  //         eastBoundLongitude
+  //         westBoundLongitude
   const cap = doc.getElementsByTagName('Capability');
   const layers = cap[0].getElementsByTagName('Layer');
   let radarLayers = [];
@@ -62,6 +79,11 @@ const parseCapabilities = (caps) => {
     stationData['times'] = layer.getElementsByTagName("Dimension").item(0).textContent.split(',');
 
     // Get the layer's geographic bounding box.
+    const bbox = layer.getElementsByTagName('EX_GeographicBoundingBox')[0];
+    stationData['northLat'] = bbox.getElementsByTagName('northBoundLatitude')[0].textContent;
+    stationData['eastLong'] = bbox.getElementsByTagName('eastBoundLongitude')[0].textContent;
+    stationData['southLat'] = bbox.getElementsByTagName('southBoundLatitude')[0].textContent;
+    stationData['westLong'] = bbox.getElementsByTagName('westBoundLongitude')[0].textContent;
 
     products.push(stationData);
   }
@@ -87,17 +109,22 @@ export const useFetchWmsCapabilities = (site) => {
         let response = {};
 
         if (! site) {
-          response.data = [];
+          response.data = null;
         } else {
           response = await axios.get(url);
         }
 
         if (isMounted) {
-          const caps = parseCapabilities(response.data);
-          setData(caps);
+          if (response.data) {
+            setData(parseCapabilities(response.data));
+          } else {
+            setData([]);
+          }
+
           setIsLoading(false);
         }
       } catch (error) {
+        /* istanbul ignore else */
         if (isMounted) {
           setLoadingError(error);
           setIsLoading(false);

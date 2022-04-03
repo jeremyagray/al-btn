@@ -1,7 +1,13 @@
 /*
+ *
+ * dark-blue-yonder, custom view of NWS radar, alert, and weather data
+ *
+ * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
+ * All rights reserved.
+ *
  * SPDX-License-Identifier: MIT
  *
- * Copyright 2021 Jeremy A Gray <gray@flyquackswim.com>.
  */
 
 import {
@@ -31,6 +37,12 @@ const server = setupServer(
         context.xml(loadXmlCapabilities()),
       )
     }
+  ),
+  rest.get(
+    'https://opengeo.ncep.noaa.gov/geoserver/kerr/ows',
+    (_, response, context) => {
+      return response.networkError('throw an error');
+    }
   )
 );
 
@@ -45,21 +57,19 @@ afterEach(() => {
 // Stop the server.
 afterAll(() => server.close());
 
-test('indicates loading the data', async () => {
+test('should indicate that data is loading', async () => {
   let cb;
 
   const { result } = renderHook(() => {
     return useFetchWmsCapabilities('kbmx', cb);
   });
 
-  console.log(result.current);
-
-  // expect(result.current.data).toBe([]);
+  expect(result.current.data.length).toBe(0);
   expect(result.current.isLoading).toBe(true);
   expect(result.current.loadingError).toBe(null);
 });
 
-test('fetches the data', async () => {
+test('should fetch data', async () => {
   let cb;
 
   const { result, waitForNextUpdate } = renderHook(() => {
@@ -68,23 +78,37 @@ test('fetches the data', async () => {
 
   await waitForNextUpdate();
 
-  // console.log(result.current.data);
-
+  expect(result.current.data.length).toBe(12);
   expect(result.current.isLoading).toBe(false);
   expect(result.current.loadingError).toBe(null);
 });
 
-// test('displays any errors', async () => {
-//   let cb;
+test('should fetch no data without a site', async () => {
+  let cb;
 
-//   const { result, waitForNextUpdate } = renderHook(() => {
-//     return useFetchWmsCapabilities('kerr', cb);
-//   });
+  const { result, waitForNextUpdate } = renderHook(() => {
+    return useFetchWmsCapabilities(null, cb);
+  });
 
-//   await waitForNextUpdate();
+  // No updates with no site.
+  // await waitForNextUpdate();
 
-//   expect(result.current[0]).toBe(null);
-//   expect(result.current[1]).toBe(false);
-//   expect(result.current[2].name).toBe('Error');
-//   expect(result.current[2].message).toBe('Network Error');
-// });
+  expect(result.current.data.length).toBe(0);
+  expect(result.current.isLoading).toBe(false);
+  expect(result.current.loadingError).toBe(null);
+});
+
+test('should display any errors', async () => {
+  let cb;
+
+  const { result, waitForNextUpdate } = renderHook(() => {
+    return useFetchWmsCapabilities('kerr', cb);
+  });
+
+  await waitForNextUpdate();
+
+  expect(result.current.data.length).toBe(0);
+  expect(result.current.isLoading).toBe(false);
+  expect(result.current.loadingError.name).toBe('Error');
+  expect(result.current.loadingError.message).toBe('Network Error');
+});
