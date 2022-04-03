@@ -1,7 +1,9 @@
 /*
+ *
  * SPDX-License-Identifier: MIT
  *
  * Copyright 2021-2022 Jeremy A Gray <gray@flyquackswim.com>.
+ *
  */
 
 // React.
@@ -14,20 +16,12 @@ import {
 // Other stuff.
 import axios from 'axios';
 
-const getLayers = (caps) => {
+const parseCapabilities = (caps) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(caps, "application/xml");
   let products = [];
 
-  // print the name of the root element or error message
-  const errorNode = doc.querySelector("parsererror");
-  if (errorNode) {
-    console.log("error while parsing");
-  } else {
-    console.log(doc.documentElement.nodeName);
-  }
-
-  // Capability -> Layer -> Layers
+  // Capability -> Layer -> Layers.
   const cap = doc.getElementsByTagName('Capability');
   const layers = cap[0].getElementsByTagName('Layer');
   let radarLayers = [];
@@ -37,31 +31,49 @@ const getLayers = (caps) => {
     }
   }
 
+  // Process each layer's data.
   for (const layer of radarLayers) {
+    const stationData = {};
+
+    // Get the layer name.
     for (const name of layer.getElementsByTagName('Name')) {
       if (name.parentNode.nodeName === 'Layer') {
-        console.log(name.textContent);
-        products.push(name.textContent);
+        stationData['layer'] = name.textContent;
       }
     }
+
+    // Get the layer description.
+    for (const description of layer.getElementsByTagName('Abstract')) {
+      if (description.parentNode.nodeName === 'Layer') {
+        stationData['description'] = description.textContent;
+      }
+    }
+
+    // Get the layer legend data.
+    const style = layer.getElementsByTagName('Style')[0];
+    const legendData = layer.getElementsByTagName('LegendURL')[0];
+    const legendURL = legendData.getElementsByTagName('OnlineResource')[0];
+
+    stationData['legendHeight'] = legendData.getAttribute('height');
+    stationData['legendWidth'] = legendData.getAttribute('width');
+    stationData['legendURL'] = legendURL.getAttribute('xlink:href');
+
+    // Get the layer image times.
+    stationData['times'] = layer.getElementsByTagName("Dimension").item(0).textContent.split(',');
+
+    // Get the layer's geographic bounding box.
+
+    products.push(stationData);
   }
   
   return products;
 };
 
-export const useFetchWmsCapabilities = (site, callback, callbackArgs = {}) => {
+export const useFetchWmsCapabilities = (site) => {
   // Data state.
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(null);
-
-  // Get a reference for the callback.
-  const ref = useRef();
-
-  // Store the callback and update on change.
-  // useEffect(() => {
-  //   ref.current = callback;
-  // }, [callback]);
 
   // Construct URL.
   const url = `https://opengeo.ncep.noaa.gov/geoserver/${site}/ows?service=wms&version=1.3.0&request=GetCapabilities`;
@@ -81,9 +93,8 @@ export const useFetchWmsCapabilities = (site, callback, callbackArgs = {}) => {
         }
 
         if (isMounted) {
-          // setData(ref.current(response.data, callbackArgs));
-          const caps = getLayers(response.data);
-          setData(response.data);
+          const caps = parseCapabilities(response.data);
+          setData(caps);
           setIsLoading(false);
         }
       } catch (error) {
